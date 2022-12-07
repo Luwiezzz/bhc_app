@@ -276,5 +276,25 @@
       swal("{{ message }}!", "You clicked the button!");
   </script> {% endif %} {% endfor %} {% endif %}
 
+
+<script>
+    
+  function getLocation() {
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition(showPosition);
+    } else { 
+      document.getElementById("demo").value = "Geolocation is not supported by this browser.";
+    }
+  }
+  
+  function showPosition(position) {
+    document.getElementById("demo").value = "https://www.latlong.net/c/?lat=" + position.coords.latitude + "&long=" + position.coords.longitude;
+  }
+
+  function getAddress() {
+    document.getElementById("demo").value = '{{user.address}}';
+  }
+</script>
+
   </body>
 </html>
