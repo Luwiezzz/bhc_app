@@ -251,11 +251,15 @@ def medicine_add(request):
     if request.method =='POST':
         picture = request.FILES.get('picture', "blank.jpg")
         name = request.POST.get('name')
-        dosage = request.POST.get('dosage')
-        medicine_type = request.POST.get('medicine_type')
-        quantity = request.POST.get('quantity')
-        meds = Medicine.objects.create(picture=picture, name=name, dosage=dosage, medicine_type=medicine_type, quantity=quantity)
-        meds.save()
+        if Medicine.objects.filter(name = name).exists():
+            messages.error(request, 'Medicine Name is already existed')
+            return redirect('/admin_medicine')
+        else:
+            dosage = request.POST.get('dosage')
+            medicine_type = request.POST.get('medicine_type')
+            quantity = request.POST.get('quantity')
+            meds = Medicine.objects.create(picture=picture, name=name, dosage=dosage, medicine_type=medicine_type, quantity=quantity)
+            meds.save()
         return redirect('/admin_medicine')
 
 def medicine_edit(request, id):

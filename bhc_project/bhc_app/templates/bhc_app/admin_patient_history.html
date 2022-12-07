@@ -5,52 +5,62 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Admin: Appointment</title>
-
-    <!--Bootstrap CSS-->
+    <title>Administrator</title>
+    <!-- css: bootstrap -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
-
+    <!-- css:font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700;900&display=swap" rel="stylesheet">
+    <!-- css stylesheet -->
+    <link rel="stylesheet" href="../../static/css/admin_patients.css">
+    <link rel="shortcut icon" href="../../static/images/Dasmariñas_City_Logo.png" type="image/x-icon">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.2/font/bootstrap-icons.css">
 </head>
 
 <body>
-
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo03" aria-controls="navbarTogglerDemo03" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-        <a class="navbar-brand" href="#">LOGO</a>
-
-        <div class="collapse navbar-collapse" id="navbarTogglerDemo03">
-            <ul class="navbar-nav mr-auto mt-2 mt-lg-0"></ul>
-            <form class="form-inline my-2 my-lg-0">
-                <a href="{%url 'bhc_app:admin_patients'%}" class="btn btn-primary">Back</a>
-            </form>
-        </div>
+    <nav class="navbar navbar-expand-lg" id="Cho3_nav">
+        <img src="../../static/images/Dasmariñas_City_Logo.png" alt="Dasmariñas_City_Logo.png" width="30" height="30">
+        <a class="nav-link" href="{%url 'bhc_app:admin_homepage'%}">City Health Office 3 Dasmariñas City Cavite (Administrator)</a>
+        <a style="pointer-events: visible;" id="logout" href="{%url 'bhc_app:admin_patients'%}"><i class="bi-box-arrow-right" alt="logout_button" style="font-size: 30px;"></i></a>
     </nav>
 
-    <table class="table">
-        <legend>Scheduled Patients/Appointment</legend>
-        <thead>
-            <tr>
-                <th scope="col">#</th>
-                <th scope="col">Name</th>
-                <th scope="col">Date</th>
-                <th scope="col">Time</th>
-                <th scope="col">Reasons</th>
-            </tr>
-        </thead>
-        <tbody>
-            {% for i in appoint %}
-            <tr>
-                <th scope="row">{{i.id}}</th>
-                <td>{{i.first_name}} {{i.last_name}}</td>
-                <td>{{i.date}}</td>
-                <td>{{i.time}}</td>
-                <td>{{i.reasons}}</td>
-            </tr>
-            {% endfor %}
-        </tbody>
-    </table>
+
+    <div class="container">
+
+        <div style="margin-top: 20px; display: grid; justify-content: center; align-content: center;">
+            <h1 style="color: #205E22;">History of Patient (Scheduled/Appointment) </h1>
+        </div>
+
+
+        <table class="table" style="margin-top: 20px;">
+            <legend></legend>
+            <thead>
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Name</th>
+                    <th scope="col">Date</th>
+                    <th scope="col">Time</th>
+                    <th scope="col">Reasons</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for i in appoint %}
+                <tr>
+                    <th scope="row">{{i.id}}</th>
+                    <td>{{i.first_name}} {{i.last_name}}</td>
+                    <td>{{i.date}}</td>
+                    <td>{{i.time}}</td>
+                    <td>{{i.reasons}}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+
+    </div>
+
+
+    
 
     <!--jQuery and Bootstrap Bundle (includes Popper)-->
     <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>

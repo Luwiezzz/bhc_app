@@ -5,33 +5,38 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Admin - Medicine</title>
-
-    <!--Bootstrap CSS-->
+    <title>Administrator</title>
+    <!-- css: bootstrap -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
-
-
+    <!-- css:font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700;900&display=swap" rel="stylesheet">
+    <!-- css stylesheet -->
+    <link rel="stylesheet" href="../../static/css/admin_medicine.css">
+    <link rel="shortcut icon" href="../../static/images/Dasmariñas_City_Logo.png" type="image/x-icon">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.2/font/bootstrap-icons.css">
 </head>
 
 <body>
 
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo03" aria-controls="navbarTogglerDemo03" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
-        </button>
-        <a class="navbar-brand" href="#">LOGO</a>
-
-        <div class="collapse navbar-collapse" id="navbarTogglerDemo03">
-            <ul class="navbar-nav mr-auto mt-2 mt-lg-0"></ul>
-            <form class="form-inline my-2 my-lg-0">
-                <a href="{%url 'bhc_app:admin_homepage'%}" class="btn btn-primary">Back</a>
-            </form>
-        </div>
+    <nav class="navbar navbar-expand-lg" id="Cho3_nav">
+        <img src="../../static/images/Dasmariñas_City_Logo.png" alt="Dasmariñas_City_Logo.png" width="30" height="30">
+        <a class="nav-link" href="{%url 'bhc_app:admin_homepage'%}">City Health Office 3 Dasmariñas City Cavite (Administrator)</a>
+        <a style="pointer-events: visible;" id="logout" href="{%url 'bhc_app:admin_homepage'%}"><i class="bi-box-arrow-right" alt="logout_button" style="font-size: 30px;"></i></a>
     </nav>
 
     <div class="container">
 
-        <table class="table">
+
+        <!--INSERT-->
+        <div style="margin-top: 20px; display: grid; justify-content: center; align-content: center;">
+            <!-- Button trigger modal -->
+            <h1 style="color: #205E22;">Medicines</h1>
+            <button type="button" class="btn btn-primary" id="addbutton" data-toggle="modal" data-target="#exampleModal">+ Add New</button>
+        </div>
+
+        <table class="table table-bordered" style="margin-top: 20px;">
             <thead>
                 <tr>
                     <th scope="col">#</th>
@@ -40,33 +45,28 @@
                     <th scope="col">DOSAGE</th>
                     <th scope="col">MEDICINE TYPE</th>
                     <th>QUANTITY</th>
-                    <th>EDIT</th>
-                    <th>DELETE</th>
+                    <th>ACTION</th>
                 </tr>
             </thead>
             <tbody>
                 {% for i in med %}
                 <tr>
                     <th scope="row">{{i.id}}</th>
-                    <th><img src="{{i.picture.url}}" class="card-img-top" alt="{{i.picture.url}}" style="width: 80px; height: 80px;"></th>
+                    <th><img src="{{i.picture.url}}" class="card-img-top" alt="{{i.picture.url}}" style="width: auto; height: 100px;"></th>
                     <td>{{i.name}}</td>
                     <td>{{i.dosage}}</td>
                     <td>@{{i.medicine_type}}</td>
                     <td>{{i.quantity}}</td>
-                    <td><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal{{i.id}}">Edit</button></td>
-                    <td><a href="medicine_del/{{i.id}}" class="btn btn-danger">Delete</a></td>
+                    <td>
+                        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal{{i.id}}">Edit</button>
+                        <a href="medicine_del/{{i.id}}" class="btn btn-danger">Delete</a>
+                    </td>
                 </tr>
                 {% endfor %}
             </tbody>
         </table>
-
     </div>
 
-    <!--INSERT-->
-    <div class="container">
-        <!-- Button trigger modal -->
-        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">Add New</button>
-    </div>
 
     <!-- Modal -->
     <form method="post" enctype="multipart/form-data" name="picture" action="/medicine_add">
@@ -80,10 +80,17 @@
                     </div>
 
                     <div class="modal-body">
-                        <img src="media/blank.jpg" class="card-img-top" id="dp" alt="" style="width: 80px; height: 80px;">
+                        <div style="display: grid; justify-items: center;">
+                            <img src="media/blank.jpg" class="card-img-top" id="dp" alt="" style="width: auto; height: 200px;">
+                        </div>
 
                         <label for="picture">Change Display Picture</label>
-                        <input type="file" name="picture" id="picture" onchange="readURL(this);" class="form-control">
+                        <div class="input-group mb-3">
+                            <div class="custom-file">
+                              <input type="file" class="custom-file-input" name="picture" id="picture" onchange="readURL(this);" required>
+                              <label class="custom-file-label" for="picture" aria-describedby="picture">Choose file</label>
+                            </div>
+                        </div>
 
                         <label for="name">Medicine Name</label>
                         <input type="text" name="name" id="name" class="form-control" value="" required>
@@ -159,6 +166,13 @@
             }
         });
     </script>
+
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    <!-- https://sweetalert.js.org/guides/ -->
+    {% if messages %} {% for message in messages %} {% if message.tags %}
+    <script>
+        swal("{{ message }}!", "You clicked the button!");
+    </script> {% endif %} {% endfor %} {% endif %}
 
 </body>
 

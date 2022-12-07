@@ -110,7 +110,7 @@
   
   <main>
     
-    <div class="collapse collapse-horizontal collapse show" id="collapseWidthExample">
+    <div class="collapse collapse-horizontal collapse show" id="collapseWidthExample" style="z-index: 100;">
       <div class="d-flex flex-column flex-shrink-0 p-3" id="sidebar">
         <ul class="nav nav-pills flex-column mb-auto">
           <li class="nav-item">
@@ -169,7 +169,7 @@
                 <img class="card-img-top" src="{{i.news_and_updates.url}}" alt="Card image cap">
                 <div class="card-body">
                     <h5 class="card-title">{{i.headline}}</h5>
-                    <a href="{{i.fb_link}}" class="btn btn-primary">Learn More</a>
+                    <a href="{{i.fb_link}}" target="_blank" class="btn btn-primary">Learn More</a>
                 </div>
             </div>
             {% endfor %}

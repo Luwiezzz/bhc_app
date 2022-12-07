@@ -163,7 +163,7 @@
 
         <h1>Medicine Supplies:</h1>
 
-        <table class="table">
+        <table class="table table-bordered">
             <thead>
                 <tr>
                     <th scope="col">#</th>
@@ -172,21 +172,17 @@
                     <th scope="col">DOSAGE</th>
                     <th scope="col">MEDICINE TYPE</th>
                     <th>QUANTITY</th>
-                    <th>EDIT</th>
-                    <th>DELETE</th>
                 </tr>
             </thead>
             <tbody>
                 {% for i in med %}
                 <tr>
                     <th scope="row">{{i.id}}</th>
-                    <th><img src="{{i.picture.url}}" class="card-img-top" alt="{{i.picture.url}}" style="width: 80px; height: 80px;"></th>
+                    <th><img src="{{i.picture.url}}" class="card-img-top" alt="{{i.picture.url}}" style="width: auto; height: 100px;"></th>
                     <td>{{i.name}}</td>
                     <td>{{i.dosage}}</td>
                     <td>@{{i.medicine_type}}</td>
                     <td>{{i.quantity}}</td>
-                    <td><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal{{i.id}}">Edit</button></td>
-                    <td><a href="medicine_del/{{i.id}}" class="btn btn-danger">Delete</a></td>
                 </tr>
                 {% endfor %}
             </tbody>
