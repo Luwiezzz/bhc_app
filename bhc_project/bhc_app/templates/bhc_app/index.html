@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> City Health Office 3 Dasmariñas City Cavite </title>
+    <!-- css: bootstrap -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
+    <!-- css:font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700;900&display=swap" rel="stylesheet">
+    <!-- css stylesheet -->
+    <link rel="stylesheet" href="../../static/css/landing_page.css">
+    <link rel="shortcut icon" href="../../static/images/Dasmariñas_City_Logo.png" type="image/x-icon">
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-lg" id="Cho3_nav">
+        <img src="../../static/images/Dasmariñas_City_Logo.png" alt="Dasmariñas_City_Logo.png" width="30" height="30">
+        <a class="nav-link" href="{%url 'bhc_app:index'%}">City Health Office 3 Dasmariñas City Cavite</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"><img src="../../static/images/hamburger.png" alt="" width="100%" height="auto"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a class="nav-link" href="#home/login">Home/Login <span class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#newsandupdate">News and Update</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#aboutandcontacts">About/Contacts</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{%url 'bhc_app:administrator'%}">Admin</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+    <section id="home/login">
+        <!-- sign_up_card -->
+        <div class="login_card_cont">
+            <div class="login_card">
+                <div class="forms_cont_signup" id="forms_cont_signup">
+                    <div class="forms_cont1" style="width: 90%;">
+                        <h1>Sign Up</h1>
+                        <h2>Create an Account to Continue.</h2>
+                        <form style="width: 100%; " method="post" action="/registration">
+                            {% csrf_token %}
+                            <div class="form" style="width: 100%; display:flex; column-gap: 10px; margin-bottom: 10px;">
+                                <div style="width: 50%;">
+                                    <label for="first_name">First Name</label> {{form.first_name}}
+
+                                </div>
+                                <div style="width: 50%;">
+                                    <label for="last_name">Last Name</label> {{form.last_name}}
+
+                                </div>
+                            </div>
+                            <div class="form" style="width: 100%; display:flex; column-gap: 10px; margin-bottom: 10px;">
+                                <div style="width: 50%;">
+                                    <div class="form-group1">
+                                        {{form.birthday}}
+                                    </div>
+
+                                </div>
+                                <div style="width: 50%;">
+                                    <label for="phone_number">Phone Number</label> {{form.c_number}}
+                                </div>
+                            </div>
+                            <div class="form" style="width: 100%; margin-bottom: 10px;">
+                                <div class="form-group1a">
+                                    {{form.address}}
+                                </div>
+                            </div>
+                            <div class="form" style="width: 100%; margin-bottom: 10px;">
+                                <div class="form-group2">
+                                    {{form.email}}
+                                </div>
+                            </div>
+                            <div class="form" style="width: 100%; margin-bottom: 10px;">
+                                <div class="form-group3">
+                                    {{form.username}}
+                                </div>
+                            </div>
+                            <div class="form" style="width: 100%; display:flex; column-gap: 10px; margin-bottom: 10px;">
+                                <div style="width: 50%;">
+                                    <label for="password">Password</label> {{form.password1}}
+                                </div>
+                                <div style="width: 50%;">
+                                    <label for="confirm_password">Confirm Password</label> {{form.password2}}
+
+                                </div>
+                            </div>
+
+                            <p style="color: #5C5C5C; margin-top: 30px;">Already have an Account? | <a href="#" style="font-weight:700; color:#257F28;" id="login_a"> Login </a>now.</p>
+                            <button type="submit" class="btn btn-primary">Login</button>
+                        </form>
+                    </div>
+                </div>
+                <!-- image_card -->
+                <div class="img_cont" id="img_cont">
+                    <div class="img_cont1">
+                        <div style="display: flex; justify-content: center; margin-bottom: 30px;">
+                            <img src="../../static/images/Dasmariñas_City_Logo.png" style="filter: drop-shadow(9px 7px 36px #257F28);" alt="Dasmariñas_City_Logo" class="img_1" width="220" height="auto">
+                        </div>
+                        <a class="dcc" style="font-size: 35px;">City Health Office 3</a>
+                        <a class="dcc" style="font-size: 27px;">Dasmariñas City Cavite</a>
+                    </div>
+                </div>
+                <!-- login_card -->
+                <div class="forms_cont_login" id="forms_cont_login">
+                    <div class="forms_cont1">
+                        <h1>Login</h1>
+                        <h2>Welcome back! Please log in to your account.</h2>
+                        <form method="post">
+                            {% csrf_token %}
+                            <div class="form-group">
+                                <label for="exampleInputEmail1">Username</label>
+                                <input type="text" class="form-control" id="username" name="username" placeholder="Enter username">
+                            </div>
+                            <div class="form-group">
+                                <label for="exampleInputPassword1">Password</label>
+                                <input type="password" class="form-control" id="exampleInputPassword1" name="password" placeholder="Password">
+                            </div>
+                            <p style="color: #5C5C5C; margin-top: 30px;">New User? |<a href="#" style="font-weight:700; color:#257F28;" id="signup_a"> Signup</a></p>
+                            <button type="submit" class="btn btn-primary">Login</button>
+                        </form>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+    </section>
+    <div class="news" id="newsandupdate">
+        <div class="news_cont">
+            <h1>News and Update</h1>
+
+            {% if news != None %}
+            <div class="cards_cont">
+                {% for i in news %}
+                <div class="card" style="width: 18rem;" id="card">
+                    <img class="card-img-top" src="{{i.news_and_updates.url}}" alt="Card image cap">
+                    <div class="card-body">
+                        <h5 class="card-title">{{i.headline}}</h5>
+                        <a href="{{i.fb_link}}" target="_blank" class="btn btn-primary">Learn More</a>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+            {% endif %}
+
+
+        </div>
+    </div>
+
+    <div class="org_chart" id="aboutandcontacts">
+        <div class="org_chart_cont">
+            <h1>Organizational Chart</h1>
+            <img src="../../static/images/org_chart.png" alt="ch03_org_chart" width="500px" height="auto">
+        </div>
+    </div>
+    <footer>
+        <div class="footer_cont">
+            <p>Contact Us for More Information/Inquiries</p>
+            <div class="icons_cont">
+                <a href="https://www.facebook.com/Cho3dasmarinas" target="_blank"><img src=",,/,,/static/images/facebook.png" alt="" width="20" height="auto"></a>
+                <a href="" target="_blank"><img src="../../static/images/gmail.png" alt="" width="20" height="auto"></a>
+            </div>
+            <p>Republic of the Philippines</p>
+        </div>
+    </footer>
+    <!-- javascript:bootstrap -->
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-Fy6S3B9q64WdZWQUiU+q4/2Lc9npb8tCaSX9FK7E8HnRr0Jz8D6OP9dO5Vg3Q9ct" crossorigin="anonymous"></script>
+    <!-- Javascript -->
+    <script>
+        document.getElementById("signup_a").addEventListener("click", function() {
+
+            document.getElementById("forms_cont_login").style.display = 'none';
+            document.getElementById("forms_cont_signup").style.display = 'flex';
+        })
+        document.getElementById("login_a").addEventListener("click", function() {
+            document.getElementById("forms_cont_login").style.display = 'grid';
+            document.getElementById("forms_cont_signup").style.display = 'none';
+        })
+    </script>
+
+
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    <!-- https://sweetalert.js.org/guides/ -->
+
+
+    {% if messages %} {% for message in messages %} {% if message.tags %}
+    <script>
+        swal("{{ message }}!", "You clicked the button!");
+    </script> {% endif %} {% endfor %} {% endif %}
+
+
+
+</body>
+
+</html>

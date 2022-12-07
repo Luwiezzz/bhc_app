@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin - News and Update</title>
+
+    <!--Bootstrap CSS-->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
+
+</head>
+
+<body>
+
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo03" aria-controls="navbarTogglerDemo03" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <a class="navbar-brand" href="#">LOGO</a>
+
+        <div class="collapse navbar-collapse" id="navbarTogglerDemo03">
+            <ul class="navbar-nav mr-auto mt-2 mt-lg-0"></ul>
+            <form class="form-inline my-2 my-lg-0">
+                <a href="{%url 'bhc_app:admin_homepage'%}" class="btn btn-primary">Back</a>
+            </form>
+        </div>
+    </nav>
+
+
+    <div class="container">
+        <h1>News and Updates</h1>
+
+        <form method="post" enctype="multipart/form-data" name="picture" action="/news_add" style="margin:5% 0 5% 0;">
+            {% csrf_token %}
+            <div class="mb-3">
+                <label for="news_and_updates" class="form-label">Upload Image</label>
+                <input class="form-control" type="file" id="news_and_updates" name="news_and_updates">
+            </div>
+
+            <div class="mb-3 row">
+                <label for="headline" class="col-sm-2 col-form-label">Headline</label>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" placeholder="Input Headline here." id="headline" name="headline">
+                </div>
+            </div>
+            <div class="mb-3 row">
+                <label for="fb_link" class="col-sm-2 col-form-label">Facebook Link</label>
+                <div class="col-sm-10">
+                    <input type="url" class="form-control" id="fb_link" name="fb_link">
+                </div>
+            </div>
+
+            <button type="submit" class="btn btn-primary" name="submit1">Save</button>
+        </form>
+
+
+
+        <table class="table table-striped" style="margin:5% 0 5% 0;">
+            <thead>
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Photo</th>
+                    <th scope="col">Headline</th>
+                    <th scope="col">Facebook Link</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for i in news %}
+                <tr>
+                    <th scope="row">{{i.id}}</th>
+                    <td>{{i.news_and_updates}}</td>
+                    <td>{{i.headline}}</td>
+                    <td>{{i.fb_link}}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+
+
+    </div>
+
+
+
+    <!--jQuery and Bootstrap Bundle (includes Popper)-->
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-Fy6S3B9q64WdZWQUiU+q4/2Lc9npb8tCaSX9FK7E8HnRr0Jz8D6OP9dO5Vg3Q9ct" crossorigin="anonymous"></script>
+
+</body>
+
+</html>

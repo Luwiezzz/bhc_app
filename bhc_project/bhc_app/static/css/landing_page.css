@@ -1,0 +1,357 @@
+* {
+    margin: 0;
+    padding: 0;
+    font-family: 'Roboto', sans-serif;
+    font-size: 14px;
+}
+
+
+/* navbar */
+
+nav {
+    background: linear-gradient(90deg, rgba(40, 138, 42, 1) 0%, rgba(29, 79, 30, 1) 100%);
+    color: black;
+}
+
+#Cho3_nav {
+    top: 0;
+    position: sticky;
+    z-index: 101;
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.25);
+}
+
+nav a {
+    color: white;
+    text-decoration: none;
+    pointer-events: none;
+}
+
+section {
+    margin: 0;
+}
+
+#navbarNav a {
+    color: white;
+    font-weight: 300;
+    font-size: 13px;
+    pointer-events: fill;
+}
+
+#navbarNav a:active,
+#navbarNav a:focus {
+    font-weight: 500;
+}
+
+
+/* login_card */
+
+.login_card_cont {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 90vh;
+}
+
+.login_card {
+    display: flex;
+    width: 700px;
+    height: 500px;
+    box-shadow: 1px -1px 44px -4px rgba(0, 0, 0, 0.66);
+}
+
+.img_cont {
+    display: grid;
+    width: 350px;
+    height: 500px;
+    background: #205E22;
+    justify-content: center;
+    align-items: center;
+    z-index: 100;
+    /* animation: testSlide 1s; */
+}
+
+.img_cont1 {
+    display: grid;
+    justify-content: center;
+}
+
+.img_cont .dcc {
+    height: fit-content;
+    color: white;
+    text-align: center;
+    margin: 0;
+    font-weight: 700;
+    font-size: 30px;
+    text-decoration: none;
+    pointer-events: none;
+}
+
+
+/* hshshhshs */
+
+.forms_cont_login {
+    display: grid;
+    width: 50%;
+    height: 100%;
+    justify-content: center;
+    align-items: center;
+    background-color: white;
+}
+
+.forms_cont_signup {
+    display: none;
+    width: 50%;
+    height: 100%;
+    justify-content: center;
+    align-items: center;
+    background-color: white;
+}
+
+.forms_cont1 {
+    display: grid;
+    justify-content: center;
+    width: 100%;
+}
+
+.forms_cont1 h1,
+.forms_cont1 h2 {
+    text-align: center;
+}
+
+.forms_cont1 button {
+    width: 100%;
+    background-color: #205E22;
+    border: none;
+    font-weight: 600;
+}
+
+.forms_cont1 button:hover {
+    background-color: #1a421b;
+}
+
+.forms_cont1 button.active,
+.forms_cont1 button:active,
+.forms_cont1 button:visited,
+.forms_cont1 button:focus,
+#card a.active,
+#card a:active,
+#card a:visited,
+#card a:focus {
+    background-color: #205E22 !important;
+}
+
+.forms_cont1 h1 {
+    font-size: 20px;
+    font-weight: 700;
+    color: #205E22;
+}
+
+.forms_cont1 h2 {
+    font-size: 15px;
+    font-weight: 300;
+    margin-bottom: 30px;
+}
+
+form label {
+    color: #5C5C5C;
+    font-size: 13px;
+}
+
+
+/* Change as form django */
+
+.form-group1,
+.form-group1a,
+.form-group2,
+.form-group3 {
+    display: grid;
+}
+
+.form-group1 {
+    width: 100%;
+    height: 4px;
+}
+
+.form-group1a,
+.form-group2,
+.form-group3 {
+    width: 100%;
+}
+
+.form-group1:before {
+    content: "Birthday";
+    display: flex;
+    justify-content: flex-start;
+    margin-bottom: 7px;
+}
+.form-group1a:before {
+    content: "Address";
+    display: flex;
+    justify-content: flex-start;
+    margin-bottom: 7px;
+}
+
+.form-group2:before {
+    content: "Email";
+    display: flex;
+    justify-content: flex-start;
+    margin-bottom: 10px;
+}
+
+.form-group3:before {
+    content: "Username";
+    display: flex;
+    justify-content: flex-start;
+    margin-bottom: 10px;
+}
+
+
+/* Hover */
+
+#navbarNav a:hover {
+    border-bottom: 1px solid white;
+}
+
+
+/* Active */
+
+#navbarNav a:active {
+    font-weight: 700;
+}
+
+
+/* news_and_updates */
+
+.news {
+    display: grid;
+    width: 100%;
+    height: 90vh;
+    background-color: #205E22;
+    justify-content: center;
+    align-items: center;
+}
+
+.news_cont {
+    display: grid;
+    grid-row-gap: 20px;
+    justify-content: center;
+    align-items: center;
+}
+
+.news_cont h1 {
+    color: white;
+    justify-self: center;
+}
+
+#card {
+    height: max-content;
+}
+
+#card img {
+    height: auto;
+    width: 100%;
+}
+
+#card a {
+    width: 100%;
+    background-color: #205E22;
+    border: none;
+}
+
+
+/* org_chart */
+
+.org_chart {
+    display: grid;
+    width: 100%;
+    height: 90vh;
+    background-color: #ffffff;
+    justify-content: center;
+    align-items: center;
+}
+
+.org_chart_cont {
+    display: grid;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    color: #205E22;
+}
+
+
+/* footer */
+
+footer {
+    height: 150px;
+    background: linear-gradient(90deg, rgba(40, 138, 42, 1) 0%, rgba(29, 79, 30, 1) 100%);
+    display: grid;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    color: white;
+}
+
+.icons_cont {
+    height: fit-content;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+}
+
+
+/* jquery */
+
+@media only screen and (min-width:1000px) {
+    #navbarNav {
+        justify-content: end;
+    }
+    #Cho3_nav {
+        padding-left: 100px;
+        padding-right: 100px;
+    }
+    .cards_cont {
+        width: 100%;
+        height: inherit;
+        display: flex;
+        justify-content: center;
+        align-items: flex-start;
+        column-gap: 20px;
+    }
+    .news {
+        height: max-content;
+        padding: 20px 0 20px 0;
+    }
+}
+
+@media only screen and (max-width: 1000px) {
+    #navbarNav a {
+        justify-content: center;
+        text-align: center;
+    }
+    #navbarNav {
+        margin-top: 10px;
+        border-top: 1px solid white;
+    }
+    .img_cont {
+        display: none;
+    }
+    .login_card {
+        width: 350px;
+    }
+    .forms_cont_login,
+    .forms_cont_signup {
+        width: 100%;
+    }
+    .cards_cont {
+        display: grid;
+        width: 100%;
+        justify-content: center;
+        grid-row-gap: 20px;
+        height: inherit;
+    }
+    .news {
+        height: max-content;
+        padding: 20px 0 20px 0;
+    }
+}

@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> Administrator </title>
+    <!-- css: bootstrap -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
+    <!-- css:font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700;900&display=swap" rel="stylesheet">
+    <!-- css stylesheet -->
+    <link rel="stylesheet" href="../../static/css/admin_login.css">
+    <link rel="shortcut icon" href="../../static/images/Dasmariñas_City_Logo.png" type="image/x-icon">
+</head>
+
+<body>
+    <!-- nav -->
+    <nav class="navbar navbar-expand-lg" id="Cho3_nav">
+        <img src="../../static/images/Dasmariñas_City_Logo.png" alt="Dasmariñas_City_Logo.png" width="30" height="30">
+        <a class="nav-link" href="">City Health Office 3 Dasmariñas City Cavite (Admin)</a>
+        <div class="extra"></div>
+    </nav>
+    <!-- login_card_admin -->
+    <section>
+        <!-- sign_up_card -->
+        <div class="login_card_cont">
+            <div class="login_card">
+
+                <!-- login_card -->
+                <div class="forms_cont_login" id="forms_cont_login">
+                    <div class="forms_cont1">
+                        <h1>Administrator</h1>
+                        <h2>Welcome back! Please log in to your account.</h2>
+                        <form method="post">
+                            {% csrf_token %}
+                            <div class="form-group">
+                                <label for="exampleInputEmail1">Username/Email</label>
+                                <input type="text" class="form-control" id="exampleInputEmail1" name="username" placeholder="Enter username">
+                            </div>
+                            <div class="form-group">
+                                <label for="exampleInputPassword1">Password</label>
+                                <input type="password" class="form-control" id="exampleInputPassword1" name="password" placeholder="Password">
+                            </div>
+                            <p style="color: #5C5C5C; margin-top: 30px;">Switch to <a href="{%url 'bhc_app:index'%}" style="font-weight:700; color:#257F28;"> Member’s Login</a></p>
+                            <button type="submit" class="btn btn-primary">Login</button>
+                        </form>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+    </section>
+
+
+
+
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    <!-- https://sweetalert.js.org/guides/ -->
+
+    {% if messages %} {% for message in messages %} {% if message.tags %}
+    <script>
+        swal("{{ message }}!", "You clicked the button!");
+    </script> {% endif %} {% endfor %} {% endif %}
+
+</body>
+
+
+</html>

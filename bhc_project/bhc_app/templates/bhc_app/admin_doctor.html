@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Administrator</title>
+    <!-- css: bootstrap -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
+    <!-- css:font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700;900&display=swap" rel="stylesheet">
+    <!-- css stylesheet -->
+    <link rel="stylesheet" href="../../static/css/admin_doctors.css">
+    <link rel="shortcut icon" href="../../static/images/Dasmariñas_City_Logo.png" type="image/x-icon">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.2/font/bootstrap-icons.css">
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-lg" id="Cho3_nav">
+        <img src="../../static/images/Dasmariñas_City_Logo.png" alt="Dasmariñas_City_Logo.png" width="30" height="30">
+        <a class="nav-link" href="{%url 'bhc_app:admin_homepage'%}">City Health Office 3 Dasmariñas City Cavite (Administrator)</a>
+        <a style="pointer-events: visible;" id="logout" href="{%url 'bhc_app:admin_homepage'%}"><i class="bi-box-arrow-right" alt="logout_button" style="font-size: 30px;"></i></a>
+    </nav>
+
+
+    <div class="container">
+
+        <!--INSERT-->
+        <div style="margin-top: 20px; display: grid; justify-content: center; align-content: center;">
+            <!-- Button trigger modal -->
+            <h1 style="color: #205E22;">Doctors</h1>
+            <button type="button" class="btn btn-primary" id="addbutton" data-toggle="modal" data-target="#exampleModal">+ Add New</button>
+        </div>
+
+
+        <div class="row" style="margin-top: 20px;">
+            {% for i in doc %}
+            <div class="col-6 col-md-4" style="margin-bottom: 20px; display: grid; justify-content: center; align-content: center;">
+                <div class="card" style="width: 18rem;">
+                    <img src="{{i.picture.url}}" class="card-img-top" alt="{{i.picture.url}}" style="width: auto; height: 200px;">
+                    <div class="card-body">
+                        <h5 class="card-title">ID: {{i.id}}</h5>
+                    </div>
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item">Name: {{i.name}}</li>
+                        <li class="list-group-item">Position: {{i.position}}</li>
+                        <li class="list-group-item">Specialty: {{i.specialty}}</li>
+                        <li class="list-group-item">Status: {{i.status}}</li>
+                        <li class="list-group-item"><button type="button" class="btn btn-primary btn-lg btn-block" data-toggle="modal" data-target="#exampleModal{{i.id}}">Edit</button></li>
+                        <li class="list-group-item"><a href="/doctor_del/{{i.id}}" class="btn btn-danger btn-lg btn-block">Delete</a></li>
+                    </ul>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+
+    
+
+    <!-- Modal -->
+    <form method="post" enctype="multipart/form-data" name="picture" action="/doctor_add">
+        {% csrf_token %}
+        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Add New Doctor</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    </div>
+
+                    <div class="modal-body">
+                        <div style="display: grid; justify-items: center;">
+                            <img src="media/blank.jpg" class="card-img-top" id="dp" alt="" style="width: auto; height: 200px;">
+                        </div>
+
+                        <label for="picture">Change Display Picture</label>
+                        <div class="input-group mb-3">
+                            <div class="custom-file">
+                              <input type="file" class="custom-file-input" name="picture" id="picture" onchange="readURL(this);">
+                              <label class="custom-file-label" for="picture" aria-describedby="picture">Choose file</label>
+                            </div>
+                        </div>
+
+                        <label for="name">Name</label>
+                        <input type="text" name="name" id="name" class="form-control" value="" required>
+
+                        <label for="position">Position</label>
+                        <input type="text" name="position" id="position" class="form-control" value="" required>
+
+                        <label for="specialty">Specialty</label>
+                        <input type="text" name="specialty" id="specialty" class="form-control" value="" required>
+
+                        <label for="status">Status</label>
+                        <select name="status" id="status" class="form-control" required>
+                            <option selected disabled>Choose here...</option>
+                            <option>Active</option>
+                            <option>On Duty</option>
+                            <option>On Leave</option>
+                            <option>Day Off</option>
+                            <option>Inactive</option>
+                        </select>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <button type="submit" class="btn btn-primary" name="submit1">Save</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+
+
+    <!--UPDATE-->
+    <!-- Modal -->
+    {% for i in doc %}
+    <div class="modal fade" id="exampleModal{{i.id}}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <form method="post" enctype="multipart/form-data" name="picture" action="doctor_edit/{{i.id}}">
+                    {% csrf_token %}
+                    <div class="modal-body" style="display: grid; justify-items: center;">
+                        <img src="{{i.picture.url}}" class="card-img-top" id="dp2" alt="" style="width: auto; height: 200px;">
+                    </div>
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item">Name: <input type="text" class="form-control" name="name" id="name" value="{{i.name}}" required></li>
+                        <li class="list-group-item">Position: <input type="text" class="form-control" name="position" id="position" value="{{i.position}}" required></li>
+                        <li class="list-group-item">Specialty: <input type="text" class="form-control" name="specialty" id="specialty" value="{{i.specialty}}" required></li>
+                        <li class="list-group-item">Status: <select name="status" id="status" class="form-control" required>
+                                                                    <option selected disabled>Choose here...</option>
+                                                                    <option>Active</option>
+                                                                    <option>On Duty</option>
+                                                                    <option>On Leave</option>
+                                                                    <option>Day Off</option>
+                                                                    <option>Inactive</option>
+                                                            </select></li>
+                    </ul>
+
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <input type="submit" class="btn btn-primary" value="Save changes">
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+
+
+    <!--jQuery and Bootstrap Bundle (includes Popper)-->
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-Fy6S3B9q64WdZWQUiU+q4/2Lc9npb8tCaSX9FK7E8HnRr0Jz8D6OP9dO5Vg3Q9ct" crossorigin="anonymous"></script>
+
+    <script>
+        $("input").change(function(dp) {
+            for (var i = 0; i < dp.originalEvent.srcElement.files.length; i++) {
+                var file = dp.originalEvent.srcElement.files[i];
+                var img = document.getElementById("dp");
+                var reader = new FileReader();
+                reader.onloadend = function() {
+                    img.src = reader.result;
+                }
+                reader.readAsDataURL(file);
+            }
+        });
+
+        $("input").change(function(dp2) {
+            for (var i = 0; i < dp2.originalEvent.srcElement.files.length; i++) {
+                var file = dp2.originalEvent.srcElement.files[i];
+                var img = document.getElementById("dp2");
+                var reader = new FileReader();
+                reader.onloadend = function() {
+                    img.src = reader.result;
+                }
+                reader.readAsDataURL(file);
+            }
+        });
+    </script>
+
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    <!-- https://sweetalert.js.org/guides/ -->
+    {% if messages %} {% for message in messages %} {% if message.tags %}
+    <script>
+        swal("{{ message }}!", "You clicked the button!");
+    </script> {% endif %} {% endfor %} {% endif %}
+
+</body>
+
+</html>

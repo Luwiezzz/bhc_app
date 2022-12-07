@@ -1,0 +1,121 @@
+* {
+    margin: 0;
+    padding: 0;
+    font-family: 'Roboto', sans-serif;
+    font-size: 14px;
+}
+
+body {
+    background: #EBF3F3;
+}
+
+
+/* navbar */
+
+nav {
+    background: #EBF3F3;
+    color: black;
+}
+
+#Cho3_nav {
+    top: 0;
+    position: sticky;
+    z-index: 101;
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.25);
+}
+
+nav a {
+    color: #205E22;
+    text-decoration: none;
+    pointer-events: none;
+}
+
+#Cho3_nav a {
+    width: 100%;
+    text-align: left;
+}
+
+#Cho3_nav #logout {
+    width: 100%;
+    text-align: right;
+}
+
+.cards {
+    display: grid;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    gap: 10px;
+}
+
+.button_cards {
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+}
+
+.button_cards_1 {
+    min-width: 100%;
+    display: flex;
+    gap: 10px;
+    height: 300px;
+}
+
+.button_cards_1 button {
+    width: 100%;
+}
+
+.configureemergency_button {
+    display: grid;
+    justify-items: center;
+    align-content: center;
+}
+
+
+/*
+.button_cards_2 {
+    min-width: 50%;
+    display: flex;
+    border: 1px solid blue;
+}
+
+.button_cards_2 button {
+    width: 50%;
+} */
+
+@media only screen and (max-width: 1000px) {
+    #Cho3_nav a {
+        width: 80%;
+        text-align: center;
+    }
+    .cards {
+        padding-left: 5%;
+        padding-right: 5%;
+        margin-bottom: 50px;
+    }
+    .button_cards {
+        display: flex;
+        gap: 10px;
+    }
+    .button_cards_1 {
+        justify-content: center;
+        min-width: 100%;
+        display: grid;
+        gap: 10px;
+        height: 300px;
+    }
+    .button_cards_1 button {
+        width: 250px;
+        height: 300px;
+    }
+}
+
+@media only screen and (min-width: 1000px) {
+    #Cho3_nav {
+        padding-left: 100px;
+        padding-right: 100px;
+    }
+    .cards {
+        padding-left: 100px;
+        padding-right: 100px;
+    }
+}

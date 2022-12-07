@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin - Medicine</title>
+
+    <!--Bootstrap CSS-->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
+
+
+</head>
+
+<body>
+
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo03" aria-controls="navbarTogglerDemo03" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <a class="navbar-brand" href="#">LOGO</a>
+
+        <div class="collapse navbar-collapse" id="navbarTogglerDemo03">
+            <ul class="navbar-nav mr-auto mt-2 mt-lg-0"></ul>
+            <form class="form-inline my-2 my-lg-0">
+                <a href="{%url 'bhc_app:admin_homepage'%}" class="btn btn-primary">Back</a>
+            </form>
+        </div>
+    </nav>
+
+    <div class="container">
+
+        <table class="table">
+            <thead>
+                <tr>
+                    <th scope="col">#</th>
+                    <th>PICTURE</th>
+                    <th scope="col">MEDICINE NAME</th>
+                    <th scope="col">DOSAGE</th>
+                    <th scope="col">MEDICINE TYPE</th>
+                    <th>QUANTITY</th>
+                    <th>EDIT</th>
+                    <th>DELETE</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for i in med %}
+                <tr>
+                    <th scope="row">{{i.id}}</th>
+                    <th><img src="{{i.picture.url}}" class="card-img-top" alt="{{i.picture.url}}" style="width: 80px; height: 80px;"></th>
+                    <td>{{i.name}}</td>
+                    <td>{{i.dosage}}</td>
+                    <td>@{{i.medicine_type}}</td>
+                    <td>{{i.quantity}}</td>
+                    <td><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal{{i.id}}">Edit</button></td>
+                    <td><a href="medicine_del/{{i.id}}" class="btn btn-danger">Delete</a></td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+
+    </div>
+
+    <!--INSERT-->
+    <div class="container">
+        <!-- Button trigger modal -->
+        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">Add New</button>
+    </div>
+
+    <!-- Modal -->
+    <form method="post" enctype="multipart/form-data" name="picture" action="/medicine_add">
+        {% csrf_token %}
+        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Add New Doctor</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    </div>
+
+                    <div class="modal-body">
+                        <img src="media/blank.jpg" class="card-img-top" id="dp" alt="" style="width: 80px; height: 80px;">
+
+                        <label for="picture">Change Display Picture</label>
+                        <input type="file" name="picture" id="picture" onchange="readURL(this);" class="form-control">
+
+                        <label for="name">Medicine Name</label>
+                        <input type="text" name="name" id="name" class="form-control" value="" required>
+
+                        <label for="dosage">Dosage</label>
+                        <input type="text" name="dosage" id="dosage" class="form-control" value="" required>
+
+                        <label for="medicine_type">Medicine Type</label>
+                        <input type="text" name="medicine_type" id="medicine_type" class="form-control" value="" required>
+
+                        <label for="quanity">Quantity</label>
+                        <input type="number" name="quantity" id="quantity" class="form-control" value="" required>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="submit" class="btn btn-primary" name="submit1">Save</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+
+
+    <!--UPDATE-->
+    <!-- Modal -->
+    {% for i in med %}
+    <div class="modal fade" id="exampleModal{{i.id}}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+                </div>
+                <form method="post" enctype="multipart/form-data" name="picture" action="medicine_edit/{{i.id}}">
+                    {% csrf_token %}
+                    <div class="modal-body">
+                        <img src="{{i.picture.url}}" class="card-img-top" id="dp" alt="{{i.picture.url}}" style="width: 80px; height: 80px;">
+                    </div>
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item">Stock No: {{i.id}}</li>
+                        <li class="list-group-item">Medicine Name: <input type="text" class="form-control" name="name" id="name" value="{{i.name}}" required></li>
+                        <li class="list-group-item">Dosage: <input type="text" class="form-control" name="dosage" id="dosage" value="{{i.dosage}}" required></li>
+                        <li class="list-group-item">Medicine Type: <input type="text" class="form-control" name="medicine_type" id="medicine_type" value="{{i.medicine_type}}" required></li>
+                        <li class="list-group-item">Quantity: <input type="number" class="form-control" name="quantity" id="quantity" value="{{i.quantity}}"></li>
+                    </ul>
+
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <input type="submit" value="Save changes">
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+
+
+    <!--jQuery and Bootstrap Bundle (includes Popper)-->
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-Fy6S3B9q64WdZWQUiU+q4/2Lc9npb8tCaSX9FK7E8HnRr0Jz8D6OP9dO5Vg3Q9ct" crossorigin="anonymous"></script>
+
+    <script>
+        $("input").change(function(dp) {
+            for (var i = 0; i < dp.originalEvent.srcElement.files.length; i++) {
+                var file = dp.originalEvent.srcElement.files[i];
+                var img = document.getElementById("dp");
+                var reader = new FileReader();
+                reader.onloadend = function() {
+                    img.src = reader.result;
+                }
+                reader.readAsDataURL(file);
+            }
+        });
+    </script>
+
+</body>
+
+</html>
