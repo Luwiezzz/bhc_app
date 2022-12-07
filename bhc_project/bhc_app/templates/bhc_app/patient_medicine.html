@@ -103,7 +103,7 @@
         <span class="navbar-toggler-icon"></span>
       </button>
       <form class="d-flex">
-        <a class="btn btn-danger" type="button"><i class="bi bi-megaphone-fill"></i>  Click Here for Emergency  <i class="bi bi-exclamation-diamond-fill"></i></a>
+        <a class="btn btn-danger" type="button" data-bs-toggle="modal" data-bs-target="#exampleModal1"><i class="bi bi-megaphone-fill"></i>  Click Here for Emergency  <i class="bi bi-exclamation-diamond-fill"></i></a>
       </form>
     </div>
   </nav>
@@ -134,7 +134,7 @@
             <a href="{%url 'bhc_app:logout_user'%}" class="btn" id="logout" style="width: 100%;">Logout</a>
           </li>
           <li style="margin: 10px 0 10px 0;">
-            <a class="btn btn-danger" type="button" style="width: 100%;"><i class="bi bi-megaphone-fill"></i>  Click Here for Emergency  <i class="bi bi-exclamation-diamond-fill"></i></a>
+            <a class="btn btn-danger" type="button" style="width: 100%;" data-bs-toggle="modal" data-bs-target="#exampleModal1"><i class="bi bi-megaphone-fill"></i>  Click Here for Emergency  <i class="bi bi-exclamation-diamond-fill"></i></a>
           </li>
         </ul>
         
@@ -193,7 +193,46 @@
     
     </div>
 
-      <!-- Button trigger modal -->
+      <!-- Modal -->
+    <div class="modal fade" id="exampleModal1" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">SEND EMERGENCY</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <form action="/sendalert" method="post"> 
+            {% csrf_token %}
+            <div class="modal-body">
+              <input type="text" class="form-control" id="email" name="email" value="{{user.email}}" hidden required>
+              <div style="display: flex; width: 100%; gap: 10px">
+                <button type="button" class="btn btn-primary btn-lg btn-block" onclick="getLocation()" style="width: 100%;">Get Current Location</button>
+                <button type="button" class="btn btn-secondary btn-lg btn-block" onclick="getAddress()" style="width: 100%;">Your Address</button>
+              </div>
+              
+              <div class="form-group" style="margin-top: 5px;">
+                <label for="demo">Location</label>
+                <input type="text" class="form-control" id="demo" name="location" required>
+              </div>
+
+              <div class="form-group" style="margin-top: 5px;">
+                <label for="subject">Subject</label>
+                <input type="text" class="form-control" id="subject" name="subject" value="EMERGENCY ALERT" required>
+              </div>
+
+              <div class="form-group">
+                <label for="message">Message</label>
+                <textarea class="form-control" id="message" name="message" rows="3" placeholder="Write brief message here..." required></textarea>
+              </div>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">CANCEL</button>
+              <button type="submit" class="btn btn-danger">SEND EMERGENCY</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
       
 
       <!-- Modal -->
