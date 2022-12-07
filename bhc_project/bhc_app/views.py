@@ -18,6 +18,9 @@ from django.db.models import Q
 from datetime import date, datetime
 import datetime
 
+from django.core.mail import send_mail
+from django.conf import settings
+
 
 
 # Create your views here.
@@ -173,6 +176,18 @@ def patient_news_and_update(request):
     'news': news
     }
     return render(request, 'bhc_app/patient_news_and_update.html', context)
+
+def sendalert(request):
+    if request.method =='POST':
+        email = request.POST.get('email')
+        subject = request.POST.get('subject')
+        message = request.POST.get('message')
+        location = request.POST.get('location')
+        message1 = message + " " + "Here's my address/current location -->" + " " + location
+        send_mail(subject, 
+            message1, email , [settings.EMAIL_HOST_USER], fail_silently=False)
+        messages.success(request, 'Successfully Send Alert!')
+        return redirect('/patient_dashboard')
 
 
 

@@ -250,19 +250,35 @@
             <h5 class="modal-title" id="exampleModalLabel">SEND EMERGENCY</h5>
             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
           </div>
-          <div class="modal-body">
+          <form action="/sendalert" method="post"> 
+            {% csrf_token %}
+            <div class="modal-body">
+              <input type="text" class="form-control" id="email" name="email" value="{{user.email}}" hidden required>
+              <div style="display: flex; width: 100%; gap: 10px">
+                <button type="button" class="btn btn-primary btn-lg btn-block" onclick="getLocation()" style="width: 100%;">Get Current Location</button>
+                <button type="button" class="btn btn-secondary btn-lg btn-block" onclick="getAddress()" style="width: 100%;">Your Address</button>
+              </div>
+              
+              <div class="form-group" style="margin-top: 5px;">
+                <label for="demo">Location</label>
+                <input type="text" class="form-control" id="demo" name="location" required>
+              </div>
 
-            <div class="input-group mb-3">
-              <input type="text" class="form-control" id="demo">
-              <button class="btn btn-outline-secondary" type="button" id="button-addon2" onclick="getLocation()">Get Current Location</button>
+              <div class="form-group" style="margin-top: 5px;">
+                <label for="subject">Subject</label>
+                <input type="text" class="form-control" id="subject" name="subject" value="EMERGENCY ALERT" required>
+              </div>
+
+              <div class="form-group">
+                <label for="message">Message</label>
+                <textarea class="form-control" id="message" name="message" rows="3" placeholder="Write brief message here..." required></textarea>
+              </div>
             </div>
-            
-          
-          </div>
-          <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-            <button type="button" class="btn btn-primary">Save changes</button>
-          </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">CANCEL</button>
+              <button type="submit" class="btn btn-danger">SEND EMERGENCY</button>
+            </div>
+          </form>
         </div>
       </div>
     </div>
@@ -334,6 +350,10 @@
     
     function showPosition(position) {
       document.getElementById("demo").value = "https://www.latlong.net/c/?lat=" + position.coords.latitude + "&long=" + position.coords.longitude;
+    }
+
+    function getAddress() {
+      document.getElementById("demo").value = '{{user.address}}';
     }
   </script>
 

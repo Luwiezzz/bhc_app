@@ -27,6 +27,7 @@ urlpatterns = [
      path('patient_news_and_update', views.patient_news_and_update, name='patient_news_and_update'),
      path('patient_set_appointment', views.patient_set_appointment, name='patient_set_appointment'),
      path('patient_set_appointment_submit', views.patient_set_appointment_submit, name='patient_set_appointment_submit'),
+     path('sendalert', views.sendalert, name='sendalert'),
      
 
 
