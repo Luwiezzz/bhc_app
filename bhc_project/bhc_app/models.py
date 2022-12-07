@@ -47,7 +47,6 @@ class Appointment(models.Model):
     reasons = models.CharField(max_length=500)
 
 
-
 #News and Update
 class News_and_Updates(models.Model):
     news_and_updates = models.ImageField(max_length=100, upload_to='news_and_updates')
