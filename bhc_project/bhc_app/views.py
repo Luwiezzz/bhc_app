@@ -188,7 +188,7 @@ def sendalert(request):
         subject = request.POST.get('subject')
         message = request.POST.get('message')
         location = request.POST.get('location')
-        message1 = 'Sender: ' + email + '⧵n' + message + " " + "Here's my address/current location -->" + " " + location
+        message1 = 'Sender: ' + email + " " + '\n' + "\nHere's my address/current location --> " + location + '\n\n' + message
         send_mail(subject, 
             message1, email , [settings.EMAIL_HOST_USER], fail_silently=False)
         messages.success(request, 'Successfully Send Alert!')
