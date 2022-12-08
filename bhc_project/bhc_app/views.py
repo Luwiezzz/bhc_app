@@ -42,7 +42,12 @@ def index(request):
            messages.error(request, 'User is not found!')
            return redirect('/index')
 
-    context =  {'form': form, 'news': news }
+    if Staff.objects.count() > 0 :
+        staff = Staff.objects.latest('id')
+        context =  {'form': form, 'news': news, 'staff': staff }
+    else:
+        staff = Staff.objects.all()
+        context =  {'form': form, 'news': news, 'staff': staff }
     return render(request, 'bhc_app/index.html', context)
 
 
@@ -347,11 +352,20 @@ def admin_patients(request):
     }
     return render(request, 'bhc_app/admin_patients.html', context)
 
-#Admin - Patients/Users History
+#Admin - Specific Patients/Users History
 def admin_patient_history(request,id):
-    appoint = Appointment.objects.all()
+    appoint = Appointment.objects.filter(patient=id)
     context = {
         'appoint': appoint
     }
     return render(request, 'bhc_app/admin_patient_history.html', context)
+
+
+#Admin - ALL Patients/Users History
+def admin_history(request):
+    appoint = Appointment.objects.all()
+    context = {
+        'appoint': appoint
+    }
+    return render(request, 'bhc_app/admin_history.html', context)
 
