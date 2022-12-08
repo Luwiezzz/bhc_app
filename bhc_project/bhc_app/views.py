@@ -183,12 +183,13 @@ def patient_news_and_update(request):
     return render(request, 'bhc_app/patient_news_and_update.html', context)
 
 def sendalert(request):
+    user = request.user
     if request.method =='POST':
         email = request.POST.get('email')
         subject = request.POST.get('subject')
         message = request.POST.get('message')
         location = request.POST.get('location')
-        message1 = 'Sender: ' + email + " " + '\n' + "\nHere's my address/current location --> " + location + '\n\n' + message
+        message1 = 'Sender: ' + user.first_name + ' ' + user.last_name  + '\n' + "Contact Number: " + user.c_number + '\n' + "\nHere's my address/current location --> " + location + '\n\n' + message
         send_mail(subject, 
             message1, email , [settings.EMAIL_HOST_USER], fail_silently=False)
         messages.success(request, 'Successfully Send Alert!')
