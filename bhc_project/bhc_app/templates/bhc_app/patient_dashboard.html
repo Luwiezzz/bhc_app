@@ -41,7 +41,7 @@
   </head>
 
 
-  <body>
+  <body style="background-color: #EBF3F3;">
     
   <svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
     <symbol id="bootstrap" viewBox="0 0 118 94">
@@ -113,7 +113,7 @@
     </div>
   </nav>
   
-  <main>
+  <main style="background-color: #EBF3F3;">
     
     <div class="collapse collapse-horizontal collapse show" id="collapseWidthExample">
       <div class="d-flex flex-column flex-shrink-0 p-3" id="sidebar">
@@ -164,7 +164,7 @@
 
     <div class="b-example-divider">
     
-      <div class="container" style="padding-top: 55px;">
+      <div class="container" style="padding-top: 55px; padding-bottom: 20px;" >
 
         <form method="post" action="/change_information">
             <h1>Dashboard:</h1>
@@ -224,7 +224,7 @@
 
         
 
-        <form method="post" action="/change_password" style="margin-top:10px; margin-bottom: 10px;" id="change_password">
+        <form method="post" action="/change_password" style="margin-top:10px; margin-bottom: 30px;" id="change_password">
             <h1>Change Password:</h1>
             <div class="gitna">
               {% csrf_token %} {{ form }}

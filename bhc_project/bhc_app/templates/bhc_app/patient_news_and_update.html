@@ -163,14 +163,16 @@
 
         <h1>News and Updates:</h1>
         
-        <div class="d-flex">
+        <div class="row" style="margin-top: 20px;">
             {% for i in news %}
-            <div class="card" style="width: 18rem;" id="card">
-                <img class="card-img-top" src="{{i.news_and_updates.url}}" alt="Card image cap">
-                <div class="card-body">
-                    <h5 class="card-title">{{i.headline}}</h5>
-                    <a href="{{i.fb_link}}" target="_blank" class="btn btn-primary">Learn More</a>
-                </div>
+            <div class="col-6 col-md-4" style="margin-bottom: 20px; display: grid; justify-content: center; align-content: center;">
+              <div class="card" style="width: 18rem;" id="card">
+                  <img class="card-img-top" src="{{i.news_and_updates.url}}" alt="Card image cap">
+                  <div class="card-body">
+                      <h5 class="card-title">{{i.headline}}</h5>
+                      <a href="{{i.fb_link}}" target="_blank" class="btn btn-primary">Learn More</a>
+                  </div>
+              </div>
             </div>
             {% endfor %}
         </div>
