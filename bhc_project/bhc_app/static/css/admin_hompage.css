@@ -40,28 +40,36 @@ nav a {
     text-align: right;
 }
 
-.cards {
+.cards,
+.cardss {
     display: grid;
     margin-top: 20px;
     margin-bottom: 20px;
     gap: 10px;
 }
 
-.button_cards {
+.button_cards,
+.button_cardss {
     display: flex;
     gap: 10px;
     justify-content: center;
 }
 
-.button_cards_1 {
+.button_cards_1,
+.button_cardss_1 {
     min-width: 100%;
     display: flex;
     gap: 10px;
     height: 300px;
 }
 
-.button_cards_1 button {
+.button_cards_1 button,
+.button_cardss_1 button {
     width: 100%;
+}
+.button_cards_1 button a,
+.button_cardss_1 button a {
+    font-size: 30px;
 }
 
 .configureemergency_button {
@@ -87,25 +95,35 @@ nav a {
         width: 80%;
         text-align: center;
     }
-    .cards {
+    .cards,
+    .cardss {
+        display: grid;
         padding-left: 5%;
         padding-right: 5%;
         margin-bottom: 50px;
     }
-    .button_cards {
-        display: flex;
+    .button_cards,
+    .button_cardss {
+        display: grid;
         gap: 10px;
     }
-    .button_cards_1 {
+    .button_cards_1,
+    .button_cardss_1 {
         justify-content: center;
         min-width: 100%;
         display: grid;
         gap: 10px;
-        height: 300px;
+        height: 100%;
     }
-    .button_cards_1 button {
+    .button_cards_1 button,
+    .button_cardss_1 button {
         width: 250px;
         height: 300px;
+    }
+
+    .button_cards_1 button a,
+    .button_cardss_1 button a {
+        font-size: 20px;
     }
 }
 
@@ -114,7 +132,8 @@ nav a {
         padding-left: 100px;
         padding-right: 100px;
     }
-    .cards {
+    .cards,
+    .cardss {
         padding-left: 100px;
         padding-right: 100px;
     }
