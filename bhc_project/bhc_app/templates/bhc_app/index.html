@@ -1,3 +1,4 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 
@@ -13,16 +14,16 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700;900&display=swap" rel="stylesheet">
     <!-- css stylesheet -->
-    <link rel="stylesheet" href="../../static/css/landing_page.css">
-    <link rel="shortcut icon" href="../../static/images/Dasmariñas_City_Logo.png" type="image/x-icon">
+    <link rel="stylesheet" href="{%static 'css/landing_page.css'%}">
+    <link rel="shortcut icon" href="{%static 'images/Dasmariñas_City_Logo.png'%}" type="image/x-icon">
 </head>
 
 <body>
     <nav class="navbar navbar-expand-lg" id="Cho3_nav">
-        <img src="../../static/images/Dasmariñas_City_Logo.png" alt="Dasmariñas_City_Logo.png" width="30" height="30">
+        <img src="{%static 'images/Dasmariñas_City_Logo.png'%}" alt="Dasmariñas_City_Logo.png" width="30" height="30">
         <a class="nav-link" href="{%url 'bhc_app:index'%}">City Health Office 3 Dasmariñas City Cavite</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"><img src="../../static/images/hamburger.png" alt="" width="100%" height="auto"></span>
+          <span class="navbar-toggler-icon"><img src="{%static 'images/hamburger.png'%}" alt="" width="100%" height="auto"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav">
@@ -106,7 +107,7 @@
                 <div class="img_cont" id="img_cont">
                     <div class="img_cont1">
                         <div style="display: flex; justify-content: center; margin-bottom: 30px;">
-                            <img src="../../static/images/Dasmariñas_City_Logo.png" style="filter: drop-shadow(9px 7px 36px #257F28);" alt="Dasmariñas_City_Logo" class="img_1" width="220" height="auto">
+                            <img src="{%static 'images/Dasmariñas_City_Logo.png'%}" style="filter: drop-shadow(9px 7px 36px #257F28);" alt="Dasmariñas_City_Logo" class="img_1" width="220" height="auto">
                         </div>
                         <a class="dcc" style="font-size: 35px;">City Health Office 3</a>
                         <a class="dcc" style="font-size: 27px;">Dasmariñas City Cavite</a>
@@ -175,8 +176,8 @@
         <div class="footer_cont">
             <p>Contact Us for More Information/Inquiries</p>
             <div class="icons_cont">
-                <a href="https://www.facebook.com/Cho3dasmarinas" target="_blank"><img src=",,/,,/static/images/facebook.png" alt="" width="20" height="auto"></a>
-                <a href="mailto: bhcsalawag03@gmail.com" target="_blank"><img src="../../static/images/gmail.png" alt="" width="20" height="auto"></a>
+                <a href="https://www.facebook.com/Cho3dasmarinas" target="_blank"><img src="{%static 'images/facebook.png'%}" alt="facebook" width="20" height="auto"></a>
+                <a href="mailto: bhcsalawag03@gmail.com" target="_blank"><img src="{%static 'images/gmail.png'%}" alt="email" width="20" height="auto"></a>
             </div>
             <p>Republic of the Philippines</p>
         </div>
