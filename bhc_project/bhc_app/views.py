@@ -275,8 +275,7 @@ def medicine_add(request):
         else:
             dosage = request.POST.get('dosage')
             medicine_type = request.POST.get('medicine_type')
-            quantity = request.POST.get('quantity')
-            meds = Medicine.objects.create(picture=picture, name=name, dosage=dosage, medicine_type=medicine_type, quantity=quantity)
+            meds = Medicine.objects.create(picture=picture, name=name, dosage=dosage, medicine_type=medicine_type)
             meds.save()
             messages.success(request, 'Saved!')
         return redirect('/admin_medicine')
@@ -287,7 +286,6 @@ def medicine_edit(request, id):
         edit.name = request.POST.get('name')
         edit.dosage = request.POST.get('dosage')
         edit.medicine_type = request.POST.get('medicine_type')
-        edit.quantity = request.POST.get('quantity')
         edit.save()
         messages.success(request, 'Updated!')
         return redirect('/admin_medicine')

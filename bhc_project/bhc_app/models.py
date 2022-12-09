@@ -20,7 +20,6 @@ class Medicine(models.Model):
     name = models.CharField(max_length=100, unique=True)
     dosage = models.CharField(max_length=100)
     medicine_type = models.CharField(max_length=100)
-    quantity = models.CharField(max_length=100)
     picture = models.ImageField(max_length=100, upload_to='medicine')
 
 
