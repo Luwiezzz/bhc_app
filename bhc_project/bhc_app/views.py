@@ -235,6 +235,7 @@ def doctor_add(request):
             status = request.POST.get('status')
             doctor = Doctors.objects.create(picture=picture, name=name, position=position, specialty=specialty, status=status)
             doctor.save()
+            messages.success(request, 'Saved!')
             return redirect('/admin_doctor')
 
 def doctor_edit(request, id):
@@ -246,11 +247,13 @@ def doctor_edit(request, id):
         edit.specialty = request.POST.get('specialty')
         edit.status = request.POST.get('status')
         edit.save()
+        messages.success(request, 'Updated!')
         return redirect('/admin_doctor')
 
 def doctor_del(request,id):
     doc = Doctors.objects.get(id=id)
     doc.delete()
+    messages.success(request, 'Deleted!')
     return redirect('/admin_doctor')
 
 
@@ -275,6 +278,7 @@ def medicine_add(request):
             quantity = request.POST.get('quantity')
             meds = Medicine.objects.create(picture=picture, name=name, dosage=dosage, medicine_type=medicine_type, quantity=quantity)
             meds.save()
+            messages.success(request, 'Saved!')
         return redirect('/admin_medicine')
 
 def medicine_edit(request, id):
@@ -285,11 +289,13 @@ def medicine_edit(request, id):
         edit.medicine_type = request.POST.get('medicine_type')
         edit.quantity = request.POST.get('quantity')
         edit.save()
+        messages.success(request, 'Updated!')
         return redirect('/admin_medicine')
 
 def medicine_del(request,id):
     doc = Medicine.objects.get(id=id)
     doc.delete()
+    messages.success(request, 'Deleted!')
     return redirect('/admin_medicine')
 
 
@@ -322,6 +328,7 @@ def news_add(request):
         fb_link = request.POST.get('fb_link')
         news = News_and_Updates.objects.create(news_and_updates=news_and_updates, headline=headline, fb_link=fb_link)
         news.save()
+        messages.success(request, 'Saved!')
         return redirect('/admin_news_and_update')
 
 #Admin - Staff
@@ -341,6 +348,7 @@ def staff_update(request):
         year = request.POST.get('year')
         staff = Staff.objects.create(staff_picture=staff_picture, year=year)
         staff.save()
+        messages.success(request, 'Saved!')
         return redirect('/admin_staff')
 
 
