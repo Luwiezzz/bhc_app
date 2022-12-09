@@ -44,17 +44,18 @@
     </nav>
     <section id="home/login">
         <!-- sign_up_card -->
-        <div class="login_card_cont">
+        <div class="login_card_cont" style="height: fit-content; padding: 20px 0 20px 0;">
             <div class="login_card">
-                <div class="forms_cont_signup" id="forms_cont_signup" style="height: 100%;">
+                <div class="forms_cont_signup" id="forms_cont_signup">
                     <div class="forms_cont1" style="width: 90%; height: 100%;">
                         <h1>Sign Up</h1>
                         <h2>Create an Account to Continue.</h2>
-                        <form style="width: 100%; " method="post" action="/registration">
+                        <form style="display: grid; grid-row-gap: 0; width:100%; height: fit-content;" method="post" action="/registration">
                             {% csrf_token %}
                             <div class="form" style="width: 100%; display:flex; column-gap: 10px; margin-bottom: 10px;">
                                 <div style="width: 50%;">
-                                    <label for="first_name">First Name</label> {{form.first_name}}
+                                    <label for="first_name">First Name</label>
+                                    <div class="">{{form.first_name}}</div>
 
                                 </div>
                                 <div style="width: 50%;">
@@ -163,13 +164,13 @@
     <div class="org_chart" id="aboutandcontacts">
         <div class="org_chart_cont">
             <h1>Organizational Chart</h1>
-        
+
             <br>
-            <img src="{{staff.staff_picture.url}}" alt="ch03_org_chart" width="500px" height="auto">   
+            <img src="{{staff.staff_picture.url}}" alt="ch03_org_chart" width="500px" height="auto">
 
             <br>
 
-          
+
         </div>
     </div>
     <footer>

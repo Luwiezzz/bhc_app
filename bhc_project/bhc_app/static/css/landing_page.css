@@ -99,11 +99,11 @@ section {
 }
 
 .forms_cont_signup {
-    display: none;
-    width: 50%;
-    height: 100%;
     justify-content: center;
     align-items: center;
+    align-content: center;
+    display: none;
+    width: 50%;
     background-color: white;
 }
 
@@ -111,6 +111,8 @@ section {
     display: grid;
     justify-content: center;
     width: 100%;
+    grid-row-gap: 0;
+    margin: 0;
 }
 
 .forms_cont1 h1,
@@ -144,12 +146,13 @@ section {
     font-size: 20px;
     font-weight: 700;
     color: #205E22;
+    margin-top: 30px;
 }
 
 .forms_cont1 h2 {
     font-size: 15px;
     font-weight: 300;
-    margin-bottom: 30px;
+    margin-bottom: 20px;
 }
 
 form label {
@@ -184,6 +187,7 @@ form label {
     justify-content: flex-start;
     margin-bottom: 7px;
 }
+
 .form-group1a:before {
     content: "Address";
     display: flex;
