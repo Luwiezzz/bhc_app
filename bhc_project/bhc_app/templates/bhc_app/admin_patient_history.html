@@ -160,7 +160,7 @@
         <table class="table table-striped">
             <thead>
                 <tr>
-                    <td colspan="5"><button type="submit" class="btn btn-primary btn-lg btn-block" style="background-color: #205E22;">+ ADD</button></td>
+                    <td colspan="5"><button type="submit" class="btn btn-primary btn-lg btn-block" data-toggle="modal" data-target="#exampleModal" style="background-color: #205E22;">+ ADD</button></td>
                 </tr>
                 <tr>
                     <th scope="col">Date</th>
@@ -171,16 +171,62 @@
                 </tr>
             </thead>
             <tbody>
+                {% for i in record %}
                 <tr>
-                    <th scope="row"></th>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
+                    <th scope="row">{{i.date}}</th>
+                    <td>{{i.history_illness}}</td>
+                    <td>{{i.physical_exam}}</td>
+                    <td>{{i.assessment}}</td>
+                    <td>{{i.treatment_or_management_plan}}</td>
                 </tr>
+                {% endfor %}
             </tbody>
         </table>
 
+    </div>
+
+    <!-- Modal -->
+    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Add Patient's Record</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <form method="post" action="/add_record">
+                    {% csrf_token %}
+                    <div class="modal-body">
+
+                        <div class="form-group">
+                            <label for="patient">Patient</label>
+                            <input type="text" class="form-control" name="patient" value="{{users.id}}">
+                        </div>
+                        <div class="form-group">
+                            <label for="history_illness">History Illness</label>
+                            <input type="text" class="form-control" name="history_illness">
+                        </div>
+                        <div class="form-group">
+                            <label for="physical_exam">Physical Examinatiuon</label>
+                            <input type="text" class="form-control" name="physical_exam">
+                        </div>
+                        <div class="form-group">
+                            <label for="assessment">Assessment/Impression</label>
+                            <input type="text" class="form-control" name="assessment">
+                        </div>
+                        <div class="form-group">
+                            <label for="treatment_or_management_plan">Treatment/Management Plan</label>
+                            <input type="text" class="form-control" name="treatment_or_management_plan">
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <button type="submit" class="btn btn-primary">Save changes</button>
+                    </div>
+                </form>
+            </div>
+        </div>
     </div>
 
 

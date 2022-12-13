@@ -363,10 +363,10 @@ def admin_patients(request):
 #Admin - Specific Patients/Users History
 def admin_patient_history(request,id):
     users = Registration.objects.get(id=id)
-    appoint = Patient_Record.objects.filter(patient=id)
+    record = Patient_Record.objects.filter(patient=id)
     context = {
         'users': users,
-        'appoint': appoint
+        'record': record
     }
     return render(request, 'bhc_app/admin_patient_history.html', context)
 
@@ -397,6 +397,19 @@ def admin_record_change(request):
         messages.success(request, 'Information was successfully updated!')
         return redirect('/admin_patient_history/' + str(users.id))
 
+def add_record(request):
+    patient = request.POST.get('patient')
+    users = Registration.objects.get(id=patient)
+    if request.method == 'POST':
+        date = datetime.datetime.today()
+        history_illness = request.POST.get('history_illness')
+        physical_exam = request.POST.get('physical_exam')
+        assessment = request.POST.get('assessment')
+        treatment_or_management_plan = request.POST.get('treatment_or_management_plan')
+        rec = Patient_Record.objects.create(date=date, patient_id=patient, history_illness=history_illness, physical_exam=physical_exam, assessment=assessment, treatment_or_management_plan=treatment_or_management_plan)
+        rec.save()
+        messages.success(request, 'Saved!')
+        return redirect('/admin_patient_history/' + str(users.id))
 
 
 #Admin - ALL Patients/Users History
