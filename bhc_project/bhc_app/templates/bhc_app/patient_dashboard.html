@@ -1,7 +1,8 @@
 {% load static %}
 <!doctype html>
 <html lang="en">
-  <head>
+
+<head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="">
@@ -10,43 +11,44 @@
     <title>Patient - Dashboard</title>
 
     <link rel="canonical" href="https://getbootstrap.com/docs/5.1/examples/sidebars/">
-    
+
     <!-- css stylesheet -->
     <link rel="shortcut icon" href="{%static 'images/Dasmariñas_City_Logo.png'%}" type="image/x-icon">
-    
+
     <!-- Bootstrap core CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
 
     <style>
-      .bd-placeholder-img {
-        font-size: 1.125rem;
-        text-anchor: middle;
-        -webkit-user-select: none;
-        -moz-user-select: none;
-        user-select: none;
-      }
-
-      @media (min-width: 768px) {
-        .bd-placeholder-img-lg {
-          font-size: 3.5rem;
+        .bd-placeholder-img {
+            font-size: 1.125rem;
+            text-anchor: middle;
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            user-select: none;
         }
-      }
+        
+        @media (min-width: 768px) {
+            .bd-placeholder-img-lg {
+                font-size: 3.5rem;
+            }
+        }
     </style>
 
-  <style>
-    #map {
-    height: 100%;}
-  </style>
+    <style>
+        #map {
+            height: 100%;
+        }
+    </style>
 
     <!-- Custom styles for this template -->
     <link rel="stylesheet" href="{%static 'css/patient_dashboard.css'%}">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.2/font/bootstrap-icons.css">
-  </head>
+</head>
 
 
-  <body style="background-color: #EBF3F3;">
-    
-  <svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+<body style="background-color: #EBF3F3;">
+
+    <svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
     <symbol id="bootstrap" viewBox="0 0 118 94">
       <title>Bootstrap</title>
       <path fill-rule="evenodd" clip-rule="evenodd" d="M24.509 0c-6.733 0-11.715 5.893-11.492 12.284.214 6.14-.064 14.092-2.066 20.577C8.943 39.365 5.547 43.485 0 44.014v5.972c5.547.529 8.943 4.649 10.951 11.153 2.002 6.485 2.28 14.437 2.066 20.577C12.794 88.106 17.776 94 24.51 94H93.5c6.733 0 11.714-5.893 11.491-12.284-.214-6.14.064-14.092 2.066-20.577 2.009-6.504 5.396-10.624 10.943-11.153v-5.972c-5.547-.529-8.934-4.649-10.943-11.153-2.002-6.484-2.28-14.437-2.066-20.577C105.214 5.894 100.233 0 93.5 0H24.508zM80 57.863C80 66.663 73.436 72 62.543 72H44a2 2 0 01-2-2V24a2 2 0 012-2h18.437c9.083 0 15.044 4.92 15.044 12.474 0 5.302-4.01 10.049-9.119 10.88v.277C75.317 46.394 80 51.21 80 57.863zM60.521 28.34H49.948v14.934h8.905c6.884 0 10.68-2.772 10.68-7.727 0-4.643-3.264-7.207-9.012-7.207zM49.948 49.2v16.458H60.91c7.167 0 10.964-2.876 10.964-8.281 0-5.406-3.903-8.178-11.425-8.178H49.948z"></path>
@@ -105,258 +107,265 @@
     </symbol>
   </svg>
 
-  <nav class="navbar navbar-light bg-light" id="navbar" style="z-index: 101;">
-    <div class="container-fluid">
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#collapseWidthExample" aria-expanded="true" aria-controls="collapseWidthExample">
+    <nav class="navbar navbar-light bg-light" id="navbar" style="z-index: 101;">
+        <div class="container-fluid">
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#collapseWidthExample" aria-expanded="true" aria-controls="collapseWidthExample">
         <span class="navbar-toggler-icon"></span>
       </button>
-      <form class="d-flex">
-        <a class="btn btn-danger" type="button" data-bs-toggle="modal" data-bs-target="#exampleModal1"><i class="bi bi-megaphone-fill"></i>  Click Here for Emergency  <i class="bi bi-exclamation-diamond-fill"></i></a>
-      </form>
-    </div>
-  </nav>
-  
-  <main style="background-color: #EBF3F3;">
-    
-    <div class="collapse collapse-horizontal collapse show" id="collapseWidthExample">
-      <div class="d-flex flex-column flex-shrink-0 p-3" id="sidebar">
-        <ul class="nav nav-pills flex-column mb-auto">
-          <li class="nav-item">
-            <a href="{%url 'bhc_app:patient_dashboard'%}" class="nav-link" aria-current="page" id="active">Dashboard</a>
-          </li>
-          <li>
-            <a href="{%url 'bhc_app:patient_set_appointment'%}" class="nav-link">Set Appointment</a>
-          </li>
-          <li>
-            <a href="{%url 'bhc_app:patient_doctor'%}" class="nav-link">Doctors</a>
-          </li>
-          <li>
-            <a href="{%url 'bhc_app:patient_medicine'%}" class="nav-link">Medicine Supplies</a>
-          </li>
-          <li>
-            <a href="{%url 'bhc_app:patient_news_and_update'%}" class="nav-link">News and Updates</a>
-          </li>
-            
-       
-          <li>
-            <a href="{%url 'bhc_app:logout_user'%}" class="btn" id="logout" style="width: 100%;">Logout</a>
-          </li>
-          <li style="margin: 10px 0 10px 0;">
-            <a class="btn btn-danger" type="button" style="width: 100%;" data-bs-toggle="modal" data-bs-target="#exampleModal1"><i class="bi bi-megaphone-fill"></i>  Click Here for Emergency  <i class="bi bi-exclamation-diamond-fill"></i></a>
-          </li>
-        </ul>
-        
-        <hr>
-        <div class="dropdown">
-          <div class="foot">
-            <img src="{%static 'images/Dasmariñas_City_Logo.png'%}" alt="Dasmariñas_City_Logo.png" width="50" height="50">
-            <a class="nav-link" style="font-size: 16px;">City Health Office 3 Dasmariñas City Cavite</a>
-          </div>
-          <div class="foot1">
-            <a class="nav-link">Contact City Health Office 3</a>
-            <div class="flex">
-              <a href="https://web.facebook.com/Cho3dasmarinas" target="_blank"><i class="bi bi-facebook" style="color: white;"></i></a>
-              <a href="mailto: bhcsalawag03@gmail.com" target="_blank"><i class="bi bi-envelope-fill" style="color: white;"></i></a>
-            </div>
-          </div>
+            <form class="d-flex">
+                <a class="btn btn-danger" type="button" data-bs-toggle="modal" data-bs-target="#exampleModal1"><i class="bi bi-megaphone-fill"></i>  Click Here for Emergency  <i class="bi bi-exclamation-diamond-fill"></i></a>
+            </form>
         </div>
-      
-      </div>
-    </div>
+    </nav>
 
-    <div class="b-example-divider">
-    
-      <div class="container" style="padding-top: 55px; padding-bottom: 20px;" >
+    <main style="background-color: #EBF3F3;">
 
-        <form method="post" action="/change_information">
-            <h1>Dashboard:</h1>
-            {% csrf_token %}
+        <div class="collapse collapse-horizontal collapse show" id="collapseWidthExample">
+            <div class="d-flex flex-column flex-shrink-0 p-3" id="sidebar">
+                <ul class="nav nav-pills flex-column mb-auto">
+                    <li class="nav-item">
+                        <a href="{%url 'bhc_app:patient_dashboard'%}" class="nav-link" aria-current="page" id="active">Dashboard</a>
+                    </li>
+                    <li>
+                        <a href="{%url 'bhc_app:patient_set_appointment'%}" class="nav-link">Set Appointment</a>
+                    </li>
+                    <li>
+                        <a href="{%url 'bhc_app:patient_doctor'%}" class="nav-link">Doctors</a>
+                    </li>
+                    <li>
+                        <a href="{%url 'bhc_app:patient_medicine'%}" class="nav-link">Medicine Supplies</a>
+                    </li>
+                    <li>
+                        <a href="{%url 'bhc_app:patient_news_and_update'%}" class="nav-link">News and Updates</a>
+                    </li>
 
-            <div class="mb-3 row">
-              <label for="staticEmail" class="col-sm-2 col-form-label">First Name:</label>
-              <div class="col-sm-10">
-                <input type="text" class="form-control" id="first_name" name="first_name" value="{{user.first_name}}" required>
-              </div>
+
+                    <li>
+                        <a href="{%url 'bhc_app:logout_user'%}" class="btn" id="logout" style="width: 100%;">Logout</a>
+                    </li>
+                    <li style="margin: 10px 0 10px 0;">
+                        <a class="btn btn-danger" type="button" style="width: 100%;" data-bs-toggle="modal" data-bs-target="#exampleModal1"><i class="bi bi-megaphone-fill"></i>  Click Here for Emergency  <i class="bi bi-exclamation-diamond-fill"></i></a>
+                    </li>
+                </ul>
+
+                <hr>
+                <div class="dropdown">
+                    <div class="foot">
+                        <img src="{%static 'images/Dasmariñas_City_Logo.png'%}" alt="Dasmariñas_City_Logo.png" width="50" height="50">
+                        <a class="nav-link" style="font-size: 16px;">City Health Office 3 Dasmariñas City Cavite</a>
+                    </div>
+                    <div class="foot1">
+                        <a class="nav-link">Contact City Health Office 3</a>
+                        <div class="flex">
+                            <a href="https://web.facebook.com/Cho3dasmarinas" target="_blank"><i class="bi bi-facebook" style="color: white;"></i></a>
+                            <a href="mailto: bhcsalawag03@gmail.com" target="_blank"><i class="bi bi-envelope-fill" style="color: white;"></i></a>
+                        </div>
+                    </div>
+                </div>
+
             </div>
-
-            <div class="mb-3 row">
-              <label for="inputPassword" class="col-sm-2 col-form-label">Last Name:</label>
-              <div class="col-sm-10">
-                <input type="text" class="form-control" id="last_name" name="last_name" value="{{user.last_name}}" required>
-              </div>
-            </div>
-
-            <div class="mb-3 row">
-              <label for="inputPassword" class="col-sm-2 col-form-label">Birthday:</label>
-              <div class="col-sm-10">
-                <input type="date" class="form-control" id="birthday" name="birthday" value="{{user.birthday|date:'Y-m-d'}}" required>
-              </div>
-            </div>
-
-            <div class="mb-3 row">
-              <label for="inputPassword" class="col-sm-2 col-form-label">Contact Number:</label>
-              <div class="col-sm-10">
-                <input type="text" class="form-control" id="c_number" name="c_number" pattern="^(09|\+639)\d{9}$" value="{{user.c_number}}" required title="Phone number only accept starts with 09, +639 and 9">
-              </div>
-            </div>
-
-            <div class="mb-3 row">
-              <label for="inputPassword" class="col-sm-2 col-form-label">Address:</label>
-              <div class="col-sm-10">
-                <input type="text" class="form-control" id="address" name="address" value="{{user.address}}" required>
-              </div>
-            </div>
-
-            <div class="mb-3 row">
-              <label for="inputPassword" class="col-sm-2 col-form-label">Username:</label>
-              <div class="col-sm-10">
-                <input type="text" class="form-control" id="email" name="username" value="{{user.username}}" required>
-              </div>
-            </div>
-
-            <div class="d-grid gap-2">
-              <button type="submit" class="btn btn-primary">SAVE ACCOUNT</button>
-            </div>
-
-        </form>
-
-        <div class="d-grid gap-2" style="margin: 10px 0 10px 0;">
-          <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#exampleModal">DELETE ACCOUNT</button>
         </div>
 
-        
+        <div class="b-example-divider">
 
-        <form method="post" action="/change_password" style="margin-top:10px; margin-bottom: 30px;" id="change_password">
-            <h1>Change Password:</h1>
-            <div class="gitna">
-              {% csrf_token %} {{ form }}
+            <div class="container" style="padding-top: 55px; padding-bottom: 20px;">
+
+                <form method="post" action="/change_information">
+                    <h1>Dashboard:</h1>
+                    {% csrf_token %}
+
+                    <div class="mb-3 row">
+                        <label for="staticEmail" class="col-sm-2 col-form-label">First Name:</label>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" id="first_name" name="first_name" value="{{user.first_name}}" required>
+                        </div>
+                    </div>
+
+                    <div class="mb-3 row">
+                        <label for="inputPassword" class="col-sm-2 col-form-label">Last Name:</label>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" id="last_name" name="last_name" value="{{user.last_name}}" required>
+                        </div>
+                    </div>
+
+                    <div class="mb-3 row">
+                        <label for="inputPassword" class="col-sm-2 col-form-label">Birthday:</label>
+                        <div class="col-sm-10">
+                            <input type="date" class="form-control" id="birthday" name="birthday" value="{{user.birthday|date:'Y-m-d'}}" required>
+                        </div>
+                    </div>
+
+                    <div class="mb-3 row">
+                        <label for="inputPassword" class="col-sm-2 col-form-label">Contact Number:</label>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" id="c_number" name="c_number" pattern="^(09|\+639)\d{9}$" value="{{user.c_number}}" required title="Phone number only accept starts with 09, +639 and 9">
+                        </div>
+                    </div>
+
+                    <div class="mb-3 row">
+                        <label for="inputPassword" class="col-sm-2 col-form-label">Address:</label>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" id="address" name="address" value="{{user.address}}" required>
+                        </div>
+                    </div>
+
+                    <div class="mb-3 row">
+                        <label for="sex" class="col-sm-2 col-form-label">Sex:</label>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" id="sex" name="sex" value="{{user.sex}}" required>
+                        </div>
+                    </div>
+
+                    <div class="mb-3 row">
+                        <label for="inputPassword" class="col-sm-2 col-form-label">Username:</label>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" id="email" name="username" value="{{user.username}}" required>
+                        </div>
+                    </div>
+
+                    <div class="d-grid gap-2">
+                        <button type="submit" class="btn btn-primary">SAVE ACCOUNT</button>
+                    </div>
+
+                </form>
+
+                <div class="d-grid gap-2" style="margin: 10px 0 10px 0;">
+                    <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#exampleModal">DELETE ACCOUNT</button>
+                </div>
+
+
+
+                <form method="post" action="/change_password" style="margin-top:10px; margin-bottom: 30px;" id="change_password">
+                    <h1>Change Password:</h1>
+                    <div class="gitna">
+                        {% csrf_token %} {{ form }}
+                    </div>
+                    <div class="d-grid gap-2" style="margin: 10px 0 10px 0;">
+                        <input type="submit" class="btn btn-primary" value="Change Password">
+                    </div>
+                </form>
             </div>
-            <div class="d-grid gap-2" style="margin: 10px 0 10px 0;">
-              <input type="submit" class="btn btn-primary" value="Change Password">
-            </div>
-        </form>
-      </div>
-
-    
-    
-    
-    
-    </div>
 
 
-    <!-- Modal -->
-    <div class="modal fade" id="exampleModal1" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-      <div class="modal-dialog">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h5 class="modal-title" id="exampleModalLabel">SEND EMERGENCY</h5>
-            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-          </div>
-          <form action="/sendalert" method="post"> 
-            {% csrf_token %}
-            <div class="modal-body">
-              <input type="text" class="form-control" id="email" name="email" value="{{user.email}}" hidden required>
-              <div style="display: flex; width: 100%; gap: 10px">
-                <button type="button" class="btn btn-primary btn-lg btn-block" onclick="getLocation()" style="width: 100%;">Get Current Location</button>
-                <button type="button" class="btn btn-secondary btn-lg btn-block" onclick="getAddress()" style="width: 100%;">Your Address</button>
-              </div>
-              
-              <div class="form-group" style="margin-top: 5px;">
-                <label for="demo">Location</label>
-                <input type="text" class="form-control" id="demo" name="location" required>
-              </div>
 
-              <div class="form-group" style="margin-top: 5px;">
-                <label for="subject">Subject</label>
-                <input type="text" class="form-control" id="subject" name="subject" value="EMERGENCY ALERT" required>
-              </div>
 
-              <div class="form-group">
-                <label for="message">Message</label>
-                <textarea class="form-control" id="message" name="message" rows="3" placeholder="Write brief message here..." required></textarea>
-              </div>
-            </div>
-            <div class="modal-footer">
-              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">CANCEL</button>
-              <button type="submit" class="btn btn-danger">SEND EMERGENCY</button>
-            </div>
-          </form>
+
         </div>
-      </div>
-    </div>
 
-     
-      
 
-      <!-- Modal -->
-      <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-          <div class="modal-content">
-            <div class="modal-header">
-              <h5 class="modal-title" id="exampleModalLabel">DANGER DELETE ACCOUNT CONFIRMATION</h5>
-              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        <!-- Modal -->
+        <div class="modal fade" id="exampleModal1" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">SEND EMERGENCY</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <form action="/sendalert" method="post">
+                        {% csrf_token %}
+                        <div class="modal-body">
+                            <input type="text" class="form-control" id="email" name="email" value="{{user.email}}" hidden required>
+                            <div style="display: flex; width: 100%; gap: 10px">
+                                <button type="button" class="btn btn-primary btn-lg btn-block" onclick="getLocation()" style="width: 100%;">Get Current Location</button>
+                                <button type="button" class="btn btn-secondary btn-lg btn-block" onclick="getAddress()" style="width: 100%;">Your Address</button>
+                            </div>
+
+                            <div class="form-group" style="margin-top: 5px;">
+                                <label for="demo">Location</label>
+                                <input type="text" class="form-control" id="demo" name="location" required>
+                            </div>
+
+                            <div class="form-group" style="margin-top: 5px;">
+                                <label for="subject">Subject</label>
+                                <input type="text" class="form-control" id="subject" name="subject" value="EMERGENCY ALERT" required>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="message">Message</label>
+                                <textarea class="form-control" id="message" name="message" rows="3" placeholder="Write brief message here..." required></textarea>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">CANCEL</button>
+                            <button type="submit" class="btn btn-danger">SEND EMERGENCY</button>
+                        </div>
+                    </form>
+                </div>
             </div>
-            <form method="post" action="/delete_account">
-              {% csrf_token %}
-              <div class="modal-body">
-                  Do you really sure you want to delete your account?
-              </div>
-              <div class="modal-footer">
-                  <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                  <button type="submit" class="btn btn-danger">Save changes</button>
-              </div>
-          </form>
-          </div>
         </div>
-      </div>
-      
 
-  </main>
+
+
+
+        <!-- Modal -->
+        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">DANGER DELETE ACCOUNT CONFIRMATION</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <form method="post" action="/delete_account">
+                        {% csrf_token %}
+                        <div class="modal-body">
+                            Do you really sure you want to delete your account?
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                            <button type="submit" class="btn btn-danger">Save changes</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+
+    </main>
 
 
     <!-- JavaScript Bundle with Popper -->
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
 
 
-  <script>
-    /* global bootstrap: false */
-    (function () {
-      'use strict'
-      var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'))
-      tooltipTriggerList.forEach(function (tooltipTriggerEl) {
-        new bootstrap.Tooltip(tooltipTriggerEl)
-      })
-    })()
-  </script>
+    <script>
+        /* global bootstrap: false */
+        (function() {
+            'use strict'
+            var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'))
+            tooltipTriggerList.forEach(function(tooltipTriggerEl) {
+                new bootstrap.Tooltip(tooltipTriggerEl)
+            })
+        })()
+    </script>
 
 
-  <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
-  <!-- https://sweetalert.js.org/guides/ -->
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    <!-- https://sweetalert.js.org/guides/ -->
 
-  {% if messages %} {% for message in messages %} {% if message.tags %}
-  <script>
-      swal("{{ message }}!", "You clicked the button!");
-  </script> {% endif %} {% endfor %} {% endif %}
+    {% if messages %} {% for message in messages %} {% if message.tags %}
+    <script>
+        swal("{{ message }}!", "You clicked the button!");
+    </script> {% endif %} {% endfor %} {% endif %}
 
 
-  <script>
-    
-    function getLocation() {
-      if (navigator.geolocation) {
-        navigator.geolocation.getCurrentPosition(showPosition);
-      } else { 
-        document.getElementById("demo").value = "Geolocation is not supported by this browser.";
-      }
-    }
-    
-    function showPosition(position) {
-      document.getElementById("demo").value = "https://www.latlong.net/c/?lat=" + position.coords.latitude + "&long=" + position.coords.longitude;
-    }
+    <script>
+        function getLocation() {
+            if (navigator.geolocation) {
+                navigator.geolocation.getCurrentPosition(showPosition);
+            } else {
+                document.getElementById("demo").value = "Geolocation is not supported by this browser.";
+            }
+        }
 
-    function getAddress() {
-      document.getElementById("demo").value = '{{user.address}}';
-    }
-  </script>
+        function showPosition(position) {
+            document.getElementById("demo").value = "https://www.latlong.net/c/?lat=" + position.coords.latitude + "&long=" + position.coords.longitude;
+        }
 
-  </body>
+        function getAddress() {
+            document.getElementById("demo").value = '{{user.address}}';
+        }
+    </script>
+
+</body>
+
 </html>

@@ -14,7 +14,7 @@ from django.forms.widgets import DateInput
 class PatientsRegistration(UserCreationForm):
     class Meta:
         model = Registration
-        fields = ['email', 'username', 'password1', 'password2', 'last_name', 'first_name', 'birthday', 'c_number', 'address']
+        fields = ['email', 'username', 'password1', 'password2', 'last_name', 'first_name', 'birthday', 'c_number', 'address', 'sex']
         widgets = {
             'birthday': DateInput(attrs={'type': 'date'}),
         }

@@ -30,38 +30,161 @@
     <div class="container">
 
         <div style="margin-top: 20px; display: grid; justify-content: center; align-content: center;">
-            <h1 style="color: #205E22;">History of Patient (Scheduled/Appointment) </h1>
+            <h1 style="color: #205E22;">Individual Patient's Record</h1>
         </div>
 
 
         <table class="table" style="margin-top: 20px;">
-            <legend></legend>
+            <form action="/admin_record_change" method="post">
+                {% csrf_token %}
+                <tbody>
+                    <tr>
+                        <td hidden><input type="text" class="form-control" name="id" placeholder="id" value="{{users.id}}" readonly></td>
+                        <th scope="row">Name:</th>
+                        <td><input type="text" class="form-control" name="name" placeholder="name" value="{{users.first_name}} {{users.last_name}}" readonly></td>
+                        <th scope="row">Birthday:</th>
+                        <td><input type="text" class="form-control" name="birthday" placeholder="bd" value="{{users.birthday}}" readonly></td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Address:</th>
+                        <td><input type="text" class="form-control" name="address" placeholder="add" value="{{users.address}}" readonly></td>
+                        <th scope="row">Sex:</th>
+                        <td><input type="text" class="form-control" name="sex" placeholder="sex" value="{{users.sex}}" readonly></td>
+                    </tr>
+                    <tr>
+                        <th scope="row">C/S:</th>
+                        <td><input type="text" class="form-control" name="cs" placeholder="cs" value="{{users.cs}}"></td>
+                        <th scope="row">Head of the Family:</th>
+                        <td><input type="text" class="form-control" name="head_of_fam" placeholder="head of the fam" value="{{users.head_of_fam}}"></td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Philhealth Status:</th>
+                        <td>
+                            <select class="form-control" name="philhealth_status">
+                            <option value="{{users.philhealth_status}}">{{users.philhealth_status}}</option>
+                            <option value="Direct">Direct</option>
+                            <option value="Indirect">Indirect</option>
+                            <option value="Dependent">Dependent</option>
+                          </select>
+                        </td>
+                        <th scope="row">ID Number:</th>
+                        <td><input type="number" class="form-control" name="philhealth_number" placeholder="if None type: 0" value="{{users.philhealth_number}}" required></td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Covid 19 vaccine Status:</th>
+                        <td>
+                            <select class="form-control" name="covid_vacc_status">
+                            <option value="{{users.covid_vacc_status}}">{{users.covid_vacc_status}}</option>
+                            <option value="Booster">Booster</option>
+                            <option value="Fully">Fully</option>
+                            <option value="Partially">Partially</option>
+                            <option value="None">None</option>
+                          </select>
+                        </td>
+                        <th scope="row">Tobacco Use:</th>
+                        <td>
+                            <select class="form-control" name="tobacco_use">
+                            <option value="{{users.tobacco_use}}">{{users.tobacco_use}}</option>
+                            <option value="Current">Current</option>
+                            <option value="Former">Former</option>
+                            <option value="Never">Never</option>
+                          </select>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th scope="row">BP:</th>
+                        <td><input type="text" class="form-control" name="bp" placeholder="BP" value="{{users.bp}}"></td>
+                        <th scope="row">PR:</th>
+                        <td><input type="text" class="form-control" name="pr" placeholder="PR" value="{{users.pr}}"></td>
+                    </tr>
+                    <tr>
+                        <th scope="row">WT:</th>
+                        <td><input type="text" class="form-control" name="wt" placeholder="WT" value="{{users.wt}}"></td>
+                        <th scope="row">HT:</th>
+                        <td><input type="text" class="form-control" name="ht" placeholder="ht" value="{{users.ht}}"></td>
+                    </tr>
+                    <tr>
+                        <th scope="row">BMI:</th>
+                        <td><input type="text" class="form-control" name="bmi" placeholder="bmi" value="{{users.bmi}}"></td>
+                        <th scope="row">Temperature:</th>
+                        <td><input type="text" class="form-control" name="temp" placeholder="bmi" value="{{users.temp}}"></td>
+                    </tr>
+                    <tr>
+                        <th scope="row">PWD:</th>
+                        <td>
+                            <select class="form-control" name="pwd">
+                            <option value="{{users.pwd}}">{{users.pwd}}</option>
+                            <option value="Yes">Yes</option>
+                            <option value="No">No</option>
+                          </select>
+                        </td>
+                        <th scope="row">Senor:</th>
+                        <td>
+                            <select class="form-control" name="senor">
+                            <option value="{{users.pwd}}">{{users.senor}}</option>
+                            <option value="Yes">Yes</option>
+                            <option value="No">No</option>
+                          </select>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Injury:</th>
+                        <td>
+                            <select class="form-control" name="injury">
+                            <option value="{{users.pwd}}">{{users.injury}}</option>
+                            <option value="Yes">Yes</option>
+                            <option value="No">No</option>
+                          </select>
+                        </td>
+                        <th scope="row">Mental Health:</th>
+                        <td>
+                            <select class="form-control" name="mental_health">
+                            <option value="{{users.pwd}}">{{users.mental_health}}</option>
+                            <option value="Yes">Yes</option>
+                            <option value="No">No</option>
+                          </select>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="4"><button type="submit" class="btn btn-primary btn-lg btn-block">SAVE</button></td>
+                    </tr>
+
+                </tbody>
+            </form>
+        </table>
+
+
+
+
+
+        <table class="table table-striped">
             <thead>
                 <tr>
-                    <th scope="col">#</th>
-                    <th scope="col">Name</th>
+                    <td colspan="5"><button type="submit" class="btn btn-primary btn-lg btn-block" style="background-color: #205E22;">+ ADD</button></td>
+                </tr>
+                <tr>
                     <th scope="col">Date</th>
-                    <th scope="col">Time</th>
-                    <th scope="col">Reasons</th>
+                    <th scope="col">History of Illness</th>
+                    <th scope="col">Physical Exam</th>
+                    <th scope="col">Assessment/Impression</th>
+                    <th scope="col">Treatment/Management Plan</th>
                 </tr>
             </thead>
             <tbody>
-                {% for i in appoint %}
                 <tr>
-                    <th scope="row">{{i.id}}</th>
-                    <td>{{i.patient.first_name}} {{i.patient.last_name}}</td>
-                    <td>{{i.date}}</td>
-                    <td>{{i.time}}</td>
-                    <td>{{i.reasons}}</td>
+                    <th scope="row"></th>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
                 </tr>
-                {% endfor %}
             </tbody>
         </table>
 
     </div>
 
 
-    
+
 
     <!--jQuery and Bootstrap Bundle (includes Popper)-->
     <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
@@ -74,7 +197,7 @@
     <script>
         swal("{{ message }}!", "You clicked the button!");
     </script> {% endif %} {% endfor %} {% endif %}
-    
+
 </body>
 
 </html>

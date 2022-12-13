@@ -51,6 +51,7 @@ urlpatterns = [
 
      path('admin_patients', views.admin_patients, name='admin_patients'),
      path('admin_patient_history/<int:id>', views.admin_patient_history),
+     path('admin_record_change', views.admin_record_change, name='admin_record_change'),
      path('admin_history', views.admin_history, name='admin_history'),
 
      path('admin_news_and_update', views.admin_news_and_update, name='admin_news_and_update'),

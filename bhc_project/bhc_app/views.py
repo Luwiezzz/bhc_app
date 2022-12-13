@@ -109,6 +109,7 @@ def change_information(request):
         patients.c_number = request.POST.get('c_number')
         patients.birthday = request.POST.get('birthday')
         patients.address = request.POST.get('address')
+        patients.sex = request.POST.get('sex')
         patients.username = request.POST.get('username')
         patients.save()
         messages.success(request, 'Your information was successfully updated!')
@@ -361,11 +362,41 @@ def admin_patients(request):
 
 #Admin - Specific Patients/Users History
 def admin_patient_history(request,id):
-    appoint = Appointment.objects.filter(patient=id)
+    users = Registration.objects.get(id=id)
+    appoint = Patient_Record.objects.filter(patient=id)
     context = {
+        'users': users,
         'appoint': appoint
     }
     return render(request, 'bhc_app/admin_patient_history.html', context)
+
+# Admin - Patient Records
+def admin_record_change(request):
+    id = request.POST.get('id')
+    users = Registration.objects.get(id=id)
+    if request.method == 'POST':
+        patients = Registration.objects.get(id=id)
+        patients.cs = request.POST.get('cs')
+        patients.philhealth_status = request.POST.get('philhealth_status')
+        patients.philhealth_number = request.POST.get('philhealth_number')
+        patients.head_of_fam = request.POST.get('head_of_fam')
+        patients.covid_vacc_status = request.POST.get('covid_vacc_status')
+        patients.tobacco_use = request.POST.get('tobacco_use')
+        patients.bp = request.POST.get('bp')
+        patients.temp = request.POST.get('temp')
+        patients.pr = request.POST.get('pr')
+        patients.rr = request.POST.get('rr')
+        patients.wt = request.POST.get('wt')
+        patients.ht = request.POST.get('ht')
+        patients.bmi = request.POST.get('bmi')
+        patients.pwd = request.POST.get('pwd')
+        patients.senor = request.POST.get('bsenorp')
+        patients.injury = request.POST.get('injury')
+        patients.mental_health = request.POST.get('mental_health')
+        patients.save()
+        messages.success(request, 'Information was successfully updated!')
+        return redirect('/admin_patient_history/' + str(users.id))
+
 
 
 #Admin - ALL Patients/Users History
