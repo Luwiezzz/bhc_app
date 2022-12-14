@@ -55,7 +55,8 @@
                     <th><img src="{{i.picture.url}}" class="card-img-top" alt="{{i.picture.url}}" style="width: auto; height: 100px;"></th>
                     <td>{{i.name}}</td>
                     <td>{{i.dosage}}</td>
-                    <td>@{{i.medicine_type}}</td>
+                    <td>{{i.medicine_type}}</td>
+                    <td>{{i.quantity}}</td>
                     <td>
                         <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal{{i.id}}">Edit</button>
                         <a href="medicine_del/{{i.id}}" class="btn btn-danger">Delete</a>
@@ -86,8 +87,8 @@
                         <label for="picture">Change Display Picture</label>
                         <div class="input-group mb-3">
                             <div class="custom-file">
-                              <input type="file" class="custom-file-input" name="picture" id="picture" onchange="readURL(this);" required>
-                              <label class="custom-file-label" for="picture" aria-describedby="picture">Choose file</label>
+                                <input type="file" class="custom-file-input" name="picture" id="picture" onchange="readURL(this);" required>
+                                <label class="custom-file-label" for="picture" aria-describedby="picture">Choose file</label>
                             </div>
                         </div>
 
@@ -99,6 +100,9 @@
 
                         <label for="medicine_type">Medicine Type</label>
                         <input type="text" name="medicine_type" id="medicine_type" class="form-control" value="" required>
+
+                        <label for="medicine_type">Quantity</label>
+                        <input type="number" name="quantity" id="quantity" class="form-control" value="" required>
 
                     </div>
                     <div class="modal-footer">
@@ -132,6 +136,7 @@
                         <li class="list-group-item">Medicine Name: <input type="text" class="form-control" name="name" id="name" value="{{i.name}}" required></li>
                         <li class="list-group-item">Dosage: <input type="text" class="form-control" name="dosage" id="dosage" value="{{i.dosage}}" required></li>
                         <li class="list-group-item">Medicine Type: <input type="text" class="form-control" name="medicine_type" id="medicine_type" value="{{i.medicine_type}}" required></li>
+                        <li class="list-group-item">Quantity: <input type="text" class="form-control" name="quantity" id="quantity" value="{{i.quantity}}" required></li>
                     </ul>
 
                     <div class="modal-footer">

@@ -21,6 +21,7 @@ class Medicine(models.Model):
     dosage = models.CharField(max_length=100)
     medicine_type = models.CharField(max_length=100)
     picture = models.ImageField(max_length=100, upload_to='medicine')
+    quantity = models.IntegerField(null=True)
 
 
 # Patients/User Accounts
