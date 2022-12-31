@@ -157,14 +157,17 @@ def patient_set_appointment_submit(request):
         date3 = datetime.datetime.strptime(date2, "%Y-%m-%d") 
         time = request.POST.get('time')
         reasons = request.POST.get('reasons')
-        if start_week <= date3 <= end_week:
-            doctor = Appointment.objects.create( patient=request.user, date=date3, time=time, reasons=reasons)
-            doctor.save()
-            messages.success(request, 'Success!')
-            return redirect('/patient_set_appointment')
+        if Appointment.objects.filter(Q(date=date3) & Q(time=time)).exists():
+            messages.error(request, 'Date and Time already reserved!')
         else:
-            messages.error(request, 'Must input Date for this week only!')
-            return redirect('/patient_set_appointment')
+            if start_week <= date3 <= end_week:
+                doctor = Appointment.objects.create( patient=request.user, date=date3, time=time, reasons=reasons)
+                doctor.save()
+                messages.success(request, 'Success!')
+                return redirect('/patient_set_appointment')
+            else:
+                messages.error(request, 'Must input Date for this week only!')
+                return redirect('/patient_set_appointment')
     return redirect('/patient_set_appointment')
 
 #Patient Medicine
