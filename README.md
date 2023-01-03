@@ -13,7 +13,7 @@
 4. Open terminal(powershell)
 -Type:
 cd bhc_project
-py manage.py makemigration
+py manage.py makemigrations
 py manage.py migrate
 py manage.py createsuperuser
 -Fill username, email and password
