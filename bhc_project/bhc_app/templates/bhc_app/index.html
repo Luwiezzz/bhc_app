@@ -47,7 +47,7 @@
                     <div class="forms_cont1" style="width: 90%; height: 100%;">
                         <h1>Sign Up</h1>
                         <h2>Create an Account to Continue.</h2>
-                        <form style="display: grid; grid-row-gap: 0; width:100%; height: fit-content;" method="post" action="/registration">
+                        <form style="display: grid; grid-row-gap: 0; width:100%; height: fit-content;" method="post" action="/registration" autocomplete="off">
                             {% csrf_token %}
                             <div class="form" style="width: 100%; display:flex; column-gap: 10px; margin-bottom: 10px;">
                                 <div style="width: 50%;">
@@ -97,7 +97,6 @@
                                 </div>
                                 <div style="width: 50%;">
                                     <label for="confirm_password">Confirm Password</label> {{form.password2}}
-
                                 </div>
                             </div>
 
